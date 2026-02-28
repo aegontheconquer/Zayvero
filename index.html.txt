@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ZAYVERO</title>
+</head>
+<body>
+  <h1>ZAYVERO</h1>
+  <h2>Power. Elevation. Presence.</h2>
+</body>
+</html>
