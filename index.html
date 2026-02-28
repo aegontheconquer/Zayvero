@@ -149,20 +149,31 @@
   <nav>
     <h1>ZAYVERO</h1>
     <ul>
-      <li>HOME</li>
-      <li>SHOP</li>
-      <li>ABOUT</li>
-      <li>CONTACT</li>
-    </ul>
+  <li><a href="#home">HOME</a></li>
+  <li><a href="#shop">SHOP</a></li>
+  <li><a href="#about">ABOUT</a></li>
+  <li><a href="#contact">CONTACT</a></li>
+</ul>
   </nav>
 
-  <div class="hero">
+nav ul li a {
+  text-decoration: none;
+  color: white;
+  transition: 0.3s;
+}
+
+nav ul li a:hover {
+  opacity: 0.6;
+}
+  <div class="hero" id="home">
     <h1>ZAYVERO</h1>
     <h2>Power. Elevation. Presence.</h2>
-    <button class="btn">SHOP COLLECTION</button>
+    <a href="#shop">
+  <button class="btn">SHOP COLLECTION</button>
+</a>
   </div>
 
-  <div class="section">
+  <div class="section" id="about">
     <h3>OUR IDENTITY</h3>
     <p>
       ZAYVERO is a global fashion movement designed for presence.
@@ -170,7 +181,7 @@
     </p>
   </div>
 
-  <div class="section">
+  <div class="section" id="shop">
     <h3>FEATURED COLLECTION</h3>
     <div class="collection">
       <div class="card">
