@@ -278,7 +278,7 @@ footer {
 </footer>
 
 <script>
-let cart = [];
+let cart = JSON.parse(localStorage.getItem("zayveroCart")) || [];
 
 function toggleCart() {
   document.getElementById("cart-panel").classList.toggle("active");
@@ -286,12 +286,18 @@ function toggleCart() {
 
 function addToCart(name, price) {
   cart.push({ name, price });
+  saveCart();
   updateCart();
 }
 
 function removeFromCart(index) {
   cart.splice(index, 1);
+  saveCart();
   updateCart();
+}
+
+function saveCart() {
+  localStorage.setItem("zayveroCart", JSON.stringify(cart));
 }
 
 function updateCart() {
@@ -310,7 +316,7 @@ function updateCart() {
         <div>
           ${item.name} - $${item.price}
         </div>
-        <button onclick="removeFromCart(${index})" 
+        <button onclick="removeFromCart(${index})"
           style="background:red;border:none;color:white;padding:5px 10px;cursor:pointer;">
           X
         </button>
@@ -321,6 +327,8 @@ function updateCart() {
   cartCount.textContent = cart.length;
   cartTotal.textContent = total;
 }
+
+updateCart();
 </script>
 
 </body>
