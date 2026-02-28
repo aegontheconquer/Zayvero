@@ -1,20 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>ZAYVERO</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>ZAYVERO</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Luxury Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <style>
+<style>
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background: #000;
+  color: #fff;
+  scroll-behavior: smooth;
+}
+
+/* NAV */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 80px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background: rgba(0,0,0,0.9);
+  z-index: 1000;
+}
+
+nav h1 {
+  font-family: 'Playfair Display', serif;
+  letter-spacing: 4px;
+  font-size: 22px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 40px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+
+nav ul li a:hover {
+  opacity: 0.6;
+}
 
 .cart-icon {
   cursor: pointer;
   font-size: 18px;
 }
 
+/* CART PANEL */
 .cart-panel {
   position: fixed;
   right: -400px;
@@ -25,35 +68,70 @@
   padding: 30px;
   transition: 0.4s ease;
   z-index: 2000;
+  overflow-y: auto;
 }
 
 .cart-panel.active {
   right: 0;
 }
 
-.cart-panel h2 {
-  margin-top: 50px;
+.cart-item {
+  margin: 15px 0;
+  border-bottom: 1px solid #333;
+  padding-bottom: 10px;
 }
 
-.cart-panel p {
+/* HERO */
+.hero {
+  height: 100vh;
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+  url('https://images.unsplash.com/photo-1520975928318-3b7f70d3a7e7?auto=format&fit=crop&w=1400&q=80') center/cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 70px;
+  letter-spacing: 6px;
+  margin: 0;
+}
+
+.hero h2 {
+  font-size: 18px;
+  letter-spacing: 4px;
   margin-top: 20px;
 }
 
-.cart-item {
-  margin: 15px 0;
-  display: flex;
-  justify-content: space-between;
+.btn {
+  margin-top: 50px;
+  padding: 15px 50px;
+  border: 1px solid white;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  font-size: 12px;
+  letter-spacing: 3px;
 }
+
+.btn:hover {
+  background: white;
+  color: black;
+}
+
+/* PRODUCTS */
 .products {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 40px;
-  padding: 40px 10%;
+  padding: 120px 10%;
 }
 
 .product {
   text-align: center;
-  transition: 0.4s ease;
 }
 
 .product img {
@@ -61,11 +139,6 @@
   height: 350px;
   object-fit: cover;
   border-radius: 10px;
-  transition: 0.4s ease;
-}
-
-.product:hover img {
-  transform: scale(1.05);
 }
 
 .product button {
@@ -75,214 +148,31 @@
   background: black;
   color: white;
   cursor: pointer;
-  transition: 0.3s ease;
 }
 
 .product button:hover {
   background: #444;
 }
-.hero h1 {
-  animation: fadeDown 1.5s ease forwards;
-  opacity: 0;
+
+footer {
+  padding: 60px;
+  text-align: center;
+  border-top: 1px solid #222;
+  font-size: 12px;
+  color: #777;
+  letter-spacing: 2px;
 }
-
-.hero h2 {
-  animation: fadeDown 1.8s ease forwards;
-  opacity: 0;
-}
-
-.hero .btn {
-  animation: fadeUp 2.2s ease forwards;
-  opacity: 0;
-}
-
-@keyframes fadeDown {
-  from {
-    opacity: 0;
-    transform: translateY(-40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-.reveal {
-  opacity: 0;
-  transform: translateY(80px);
-  transition: all 1.4s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-    body {
-      margin: 0;
-      font-family: 'Montserrat', sans-serif;
-      background: #000;
-      color: #fff;
-      scroll-behavior: smooth;
-    }
-
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 25px 80px;
-      position: fixed;
-      width: 100%;
-      top: 0;
-      background: rgba(0,0,0,0.85);
-      backdrop-filter: blur(10px);
-      z-index: 1000;
-    }
-
-    nav h1 {
-      font-family: 'Playfair Display', serif;
-      letter-spacing: 4px;
-      font-size: 22px;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 40px;
-    }
-
-    nav ul li {
-      cursor: pointer;
-      font-size: 13px;
-      letter-spacing: 2px;
-      transition: 0.3s;
-    }
-nav ul li a {
-  text-decoration: none;
-  color: white;
-  transition: 0.3s;
-}
-
-nav ul li a:hover {
-  opacity: 0.6;
-}
-
-    nav ul li:hover {
-      opacity: 0.6;
-    }
-
-    .hero {
-      height: 100vh;
-      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-      url('https://images.unsplash.com/photo-1520975928318-3b7f70d3a7e7?auto=format&fit=crop&w=1400&q=80') center/cover;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
-
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 70px;
-      letter-spacing: 6px;
-      margin: 0;
-    }
-
-    .hero h2 {
-      font-size: 18px;
-      letter-spacing: 4px;
-      margin-top: 20px;
-      font-weight: 300;
-    }
-
-    .btn {
-      margin-top: 50px;
-      padding: 15px 50px;
-      border: 1px solid white;
-      background: transparent;
-      color: white;
-      cursor: pointer;
-      font-size: 12px;
-      letter-spacing: 3px;
-      transition: 0.3s;
-    }
-
-    .btn:hover {
-      background: white;
-      color: black;
-    }
-
-    .section {
-      padding: 120px 80px;
-      text-align: center;
-    }
-
-    .section h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 36px;
-      letter-spacing: 4px;
-      margin-bottom: 30px;
-    }
-
-    .section p {
-      max-width: 600px;
-      margin: auto;
-      line-height: 1.8;
-      color: #bbb;
-    }
-
-    .collection {
-      display: flex;
-      justify-content: center;
-      gap: 50px;
-      flex-wrap: wrap;
-      margin-top: 60px;
-    }
-
-    .card {
-      border: 1px solid #333;
-      padding: 60px 40px;
-      width: 220px;
-      transition: 0.3s;
-    }
-
-    .card:hover {
-      transform: translateY(-10px);
-      border-color: #777;
-    }
-
-    footer {
-      padding: 60px;
-      text-align: center;
-      border-top: 1px solid #222;
-      font-size: 12px;
-      color: #777;
-      letter-spacing: 2px;
-    }
-
-  </style>
+</style>
 </head>
+
 <body>
 
- <nav>
+<nav>
   <h1>ZAYVERO</h1>
-
   <ul>
     <li><a href="#home">HOME</a></li>
     <li><a href="#shop">SHOP</a></li>
-    <li><a href="#about">ABOUT</a></li>
   </ul>
-
   <div class="cart-icon" onclick="toggleCart()">
     🛒 <span id="cart-count">0</span>
   </div>
@@ -294,23 +184,13 @@ nav ul li a:hover {
   <p>Total: $<span id="cart-total">0</span></p>
 </div>
 
-  <div class="hero" id="home">
-    <h1>ZAYVERO</h1>
-    <h2>Power. Elevation. Presence.</h2>
-    <a href="#shop">
-  <button class="btn">SHOP COLLECTION</button>
-</a>
-  </div>
+<div class="hero" id="home">
+  <h1>ZAYVERO</h1>
+  <h2>Power. Elevation. Presence.</h2>
+  <a href="#shop"><button class="btn">SHOP COLLECTION</button></a>
+</div>
 
-  <div class="section reveal" id="about">
-    <h3>OUR IDENTITY</h3>
-    <p>
-      ZAYVERO is a global fashion movement designed for presence.
-      A statement for those who elevate everyday and wear their power unapologetically.
-    </p>
-  </div>
-
-  <div class="products" id="shop">
+<div class="products" id="shop">
 
   <div class="product">
     <img src="https://images.unsplash.com/photo-1520975916090-3105956dac38" alt="">
@@ -340,111 +220,45 @@ nav ul li a:hover {
     <button onclick="addToCart('Midnight Silk Dress', 120)">Add to Cart</button>
   </div>
 
-  <div class="product">
-    <img src="https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb" alt="">
-    <h3>Sculpt Tank</h3>
-    <p>$55</p>
-    <button onclick="addToCart('Sculpt Tank', 55)">Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3" alt="">
-    <h3>Ivory Icon Bag</h3>
-    <p>$140</p>
-    <button onclick="addToCart('Ivory Icon Bag', 140)">Add to Cart</button>
-  </div>
-
 </div>
 
-  <div class="product">
-    <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab" alt="">
-    <h3>Essential White Tee</h3>
-    <p>$45</p>
-    <button>Add to Cart</button>
-  </div>
+<footer>
+  © 2026 ZAYVERO. Power. Elevation. Presence.
+</footer>
 
-  <div class="product">
-    <img src="https://images.unsplash.com/photo-1516826957135-700dedea698c" alt="">
-    <h3>Urban Grey Hoodie</h3>
-    <p>$85</p>
-    <button>Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <img src="https://images.unsplash.com/photo-1520962917950-2db5f77c31a3" alt="">
-    <h3>Midnight Silk Dress</h3>
-    <p>$120</p>
-    <button>Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <img src="https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb" alt="">
-    <h3>Sculpt Tank</h3>
-    <p>$55</p>
-    <button>Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3" alt="">
-    <h3>Ivory Icon Bag</h3>
-    <p>$140</p>
-    <button>Add to Cart</button>
-  </div>
-
-</div>
-
-  <footer>
-    © 2026 ZAYVERO. Power. Elevation. Presence.
-  </footer>
 <script>
-  let cart = [];
+let cart = [];
 
-  function toggleCart() {
-    document.getElementById("cart-panel").classList.toggle("active");
-  }
+function toggleCart() {
+  document.getElementById("cart-panel").classList.toggle("active");
+}
 
-  function addToCart(name, price) {
-    cart.push({ name, price });
-    updateCart();
-  }
+function addToCart(name, price) {
+  cart.push({ name, price });
+  updateCart();
+}
 
-  function updateCart() {
-    const cartItems = document.getElementById("cart-items");
-    const cartCount = document.getElementById("cart-count");
-    const cartTotal = document.getElementById("cart-total");
+function updateCart() {
+  const cartItems = document.getElementById("cart-items");
+  const cartCount = document.getElementById("cart-count");
+  const cartTotal = document.getElementById("cart-total");
 
-    cartItems.innerHTML = "";
-    let total = 0;
+  cartItems.innerHTML = "";
+  let total = 0;
 
-    cart.forEach((item, index) => {
-      total += item.price;
-      cartItems.innerHTML += `
-        <div class="cart-item">
-          ${item.name} - $${item.price}
-        </div>
-      `;
-    });
+  cart.forEach(item => {
+    total += item.price;
+    cartItems.innerHTML += `
+      <div class="cart-item">
+        ${item.name} - $${item.price}
+      </div>
+    `;
+  });
 
-    cartCount.textContent = cart.length;
-    cartTotal.textContent = total;
-  }
-
-  function revealOnScroll() {
-    const reveals = document.querySelectorAll('.reveal');
-
-    for (let i = 0; i < reveals.length; i++) {
-      const windowHeight = window.innerHeight;
-      const elementTop = reveals[i].getBoundingClientRect().top;
-      const elementVisible = 100;
-
-      if (elementTop < windowHeight - elementVisible) {
-        reveals[i].classList.add("active");
-      }
-    }
-  }
-
-  window.addEventListener("scroll", revealOnScroll);
-  revealOnScroll();
+  cartCount.textContent = cart.length;
+  cartTotal.textContent = total;
+}
 </script>
+
 </body>
 </html>
