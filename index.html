@@ -289,6 +289,11 @@ function addToCart(name, price) {
   updateCart();
 }
 
+function removeFromCart(index) {
+  cart.splice(index, 1);
+  updateCart();
+}
+
 function updateCart() {
   const cartItems = document.getElementById("cart-items");
   const cartCount = document.getElementById("cart-count");
@@ -297,11 +302,18 @@ function updateCart() {
   cartItems.innerHTML = "";
   let total = 0;
 
-  cart.forEach(item => {
+  cart.forEach((item, index) => {
     total += item.price;
+
     cartItems.innerHTML += `
       <div class="cart-item">
-        ${item.name} - $${item.price}
+        <div>
+          ${item.name} - $${item.price}
+        </div>
+        <button onclick="removeFromCart(${index})" 
+          style="background:red;border:none;color:white;padding:5px 10px;cursor:pointer;">
+          X
+        </button>
       </div>
     `;
   });
