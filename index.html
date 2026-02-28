@@ -5,46 +5,58 @@
   <title>ZAYVERO</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- Luxury Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Montserrat', sans-serif;
       background: #000;
       color: #fff;
+      scroll-behavior: smooth;
     }
 
-    /* NAVBAR */
     nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 50px;
+      padding: 25px 80px;
       position: fixed;
       width: 100%;
       top: 0;
-      background: rgba(0,0,0,0.9);
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
     }
 
     nav h1 {
+      font-family: 'Playfair Display', serif;
       letter-spacing: 4px;
-      font-size: 20px;
+      font-size: 22px;
     }
 
     nav ul {
       list-style: none;
       display: flex;
-      gap: 30px;
+      gap: 40px;
     }
 
     nav ul li {
       cursor: pointer;
-      font-size: 14px;
+      font-size: 13px;
       letter-spacing: 2px;
+      transition: 0.3s;
     }
 
-    /* HERO */
+    nav ul li:hover {
+      opacity: 0.6;
+    }
+
     .hero {
       height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+      url('https://images.unsplash.com/photo-1520975928318-3b7f70d3a7e7?auto=format&fit=crop&w=1400&q=80') center/cover;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -52,21 +64,29 @@
       text-align: center;
     }
 
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 70px;
+      letter-spacing: 6px;
+      margin: 0;
+    }
+
     .hero h2 {
       font-size: 18px;
-      letter-spacing: 3px;
+      letter-spacing: 4px;
       margin-top: 20px;
+      font-weight: 300;
     }
 
     .btn {
-      margin-top: 40px;
-      padding: 15px 40px;
+      margin-top: 50px;
+      padding: 15px 50px;
       border: 1px solid white;
       background: transparent;
       color: white;
       cursor: pointer;
-      font-size: 14px;
-      letter-spacing: 2px;
+      font-size: 12px;
+      letter-spacing: 3px;
       transition: 0.3s;
     }
 
@@ -75,52 +95,52 @@
       color: black;
     }
 
-    /* ABOUT SECTION */
     .section {
-      padding: 100px 50px;
+      padding: 120px 80px;
       text-align: center;
     }
 
     .section h3 {
-      font-size: 28px;
-      margin-bottom: 20px;
-      letter-spacing: 3px;
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      letter-spacing: 4px;
+      margin-bottom: 30px;
     }
 
     .section p {
       max-width: 600px;
       margin: auto;
-      line-height: 1.6;
-      color: #ccc;
+      line-height: 1.8;
+      color: #bbb;
     }
 
-    /* COLLECTION */
     .collection {
       display: flex;
       justify-content: center;
-      gap: 40px;
+      gap: 50px;
       flex-wrap: wrap;
-      margin-top: 50px;
+      margin-top: 60px;
     }
 
     .card {
       border: 1px solid #333;
-      padding: 40px;
-      width: 200px;
-      text-align: center;
+      padding: 60px 40px;
+      width: 220px;
+      transition: 0.3s;
     }
 
-    .card h4 {
-      margin-bottom: 10px;
+    .card:hover {
+      transform: translateY(-10px);
+      border-color: #777;
     }
 
-    /* FOOTER */
     footer {
-      padding: 40px;
+      padding: 60px;
       text-align: center;
       border-top: 1px solid #222;
       font-size: 12px;
       color: #777;
+      letter-spacing: 2px;
     }
   </style>
 </head>
@@ -145,8 +165,8 @@
   <div class="section">
     <h3>OUR IDENTITY</h3>
     <p>
-      ZAYVERO is a modern fashion movement built for presence.
-      Designed for those who lead, elevate, and express power through style.
+      ZAYVERO is a global fashion movement designed for presence.
+      A statement for those who elevate everyday and wear their power unapologetically.
     </p>
   </div>
 
@@ -169,7 +189,7 @@
   </div>
 
   <footer>
-    © 2026 ZAYVERO. All Rights Reserved.
+    © 2026 ZAYVERO. Power. Elevation. Presence.
   </footer>
 
 </body>
