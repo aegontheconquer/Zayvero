@@ -8,8 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-
-/* RESET */
 * {
   margin: 0;
   padding: 0;
@@ -23,7 +21,7 @@ body {
   scroll-behavior: smooth;
 }
 
-/* NAVBAR */
+/* NAV */
 nav {
   position: fixed;
   top: 0;
@@ -65,7 +63,27 @@ nav ul li a:hover {
   font-size: 18px;
 }
 
-/* CART PANEL */
+/* OVERLAY */
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.5s ease;
+  z-index: 2000;
+}
+
+#overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* CART */
 .cart-panel {
   position: fixed;
   top: 0;
@@ -75,7 +93,7 @@ nav ul li a:hover {
   background: #111;
   padding: 40px 30px;
   transition: right 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-  z-index: 9999;
+  z-index: 3000;
   overflow-y: auto;
   box-shadow: -20px 0 60px rgba(0,0,0,0.9);
 }
@@ -84,30 +102,9 @@ nav ul li a:hover {
   right: 0;
 }
 
-#overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(5px);
-  opacity: 0;
-  visibility: hidden;
-  transition: 0.5s ease;
-  z-index: 9998;
-}
-
-#overlay.active {
-  opacity: 1;
-  visibility: visible;
-}
-
-.cart-panel h2 {
-  margin-bottom: 20px;
-}
-
 .cart-item {
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 15px;
   padding-bottom: 10px;
   border-bottom: 1px solid #333;
@@ -145,7 +142,6 @@ nav ul li a:hover {
   background: transparent;
   color: white;
   cursor: pointer;
-  font-size: 12px;
   letter-spacing: 3px;
   transition: 0.3s;
 }
@@ -194,15 +190,8 @@ nav ul li a:hover {
   border-radius: 10px;
 }
 
-.product h3 {
-  margin-top: 15px;
-}
-
-.product p {
-  margin: 10px 0;
-}
-
 .product button {
+  margin-top: 10px;
   padding: 10px 20px;
   border: none;
   background: black;
@@ -221,9 +210,7 @@ footer {
   border-top: 1px solid #222;
   font-size: 12px;
   color: #777;
-  letter-spacing: 2px;
 }
-
 </style>
 </head>
 <body>
@@ -240,8 +227,9 @@ footer {
   </div>
 </nav>
 
-<div class="cart-panel" id="cart-panel">
 <div id="overlay" onclick="toggleCart()"></div>
+
+<div class="cart-panel" id="cart-panel">
   <h2>Your Cart</h2>
   <div id="cart-items"></div>
   <p>Total: $<span id="cart-total">0</span></p>
@@ -262,50 +250,38 @@ footer {
 </div>
 
 <div class="products" id="shop">
-
   <div class="product">
     <img src="https://images.unsplash.com/photo-1520975916090-3105956dac38" alt="">
     <h3>Shadow Bomber</h3>
     <p>$110</p>
-    <button onclick="addToCart('Shadow Bomber', 110)">Add to Cart</button>
+    <button onclick="addToCart('Shadow Bomber',110)">Add to Cart</button>
   </div>
 
   <div class="product">
     <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab" alt="">
     <h3>Essential White Tee</h3>
     <p>$45</p>
-    <button onclick="addToCart('Essential White Tee', 45)">Add to Cart</button>
+    <button onclick="addToCart('Essential White Tee',45)">Add to Cart</button>
   </div>
 
   <div class="product">
     <img src="https://images.unsplash.com/photo-1516826957135-700dedea698c" alt="">
     <h3>Urban Grey Hoodie</h3>
     <p>$85</p>
-    <button onclick="addToCart('Urban Grey Hoodie', 85)">Add to Cart</button>
+    <button onclick="addToCart('Urban Grey Hoodie',85)">Add to Cart</button>
   </div>
-
-  <div class="product">
-    <img src="https://images.unsplash.com/photo-1520962917950-2db5f77c31a3" alt="">
-    <h3>Midnight Silk Dress</h3>
-    <p>$120</p>
-    <button onclick="addToCart('Midnight Silk Dress', 120)">Add to Cart</button>
-  </div>
-
 </div>
 
 <footer>
-  © 2026 ZAYVERO. Power. Elevation. Presence.
+© 2026 ZAYVERO. Power. Elevation. Presence.
 </footer>
 
 <script>
 let cart = JSON.parse(localStorage.getItem("zayveroCart")) || [];
 
 function toggleCart() {
-  const cartPanel = document.getElementById("cart-panel");
-  const overlay = document.getElementById("overlay");
-
-  cartPanel.classList.toggle("active");
-  overlay.classList.toggle("active");
+  document.getElementById("cart-panel").classList.toggle("active");
+  document.getElementById("overlay").classList.toggle("active");
 }
 
 function addToCart(name, price) {
@@ -334,16 +310,10 @@ function updateCart() {
 
   cart.forEach((item, index) => {
     total += item.price;
-
     cartItems.innerHTML += `
       <div class="cart-item">
-        <div>
-          ${item.name} - $${item.price}
-        </div>
-        <button onclick="removeFromCart(${index})"
-          style="background:red;border:none;color:white;padding:5px 10px;cursor:pointer;">
-          X
-        </button>
+        <div>${item.name} - $${item.price}</div>
+        <button onclick="removeFromCart(${index})" style="background:red;border:none;color:white;padding:5px 10px;cursor:pointer;">X</button>
       </div>
     `;
   });
