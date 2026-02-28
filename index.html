@@ -8,23 +8,30 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-body {
+
+/* RESET */
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
   font-family: 'Montserrat', sans-serif;
   background: #000;
   color: #fff;
   scroll-behavior: smooth;
 }
 
-/* NAV */
+/* NAVBAR */
 nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 25px 80px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 25px 80px;
-  position: fixed;
-  width: 100%;
-  top: 0;
   background: rgba(0,0,0,0.9);
   z-index: 1000;
 }
@@ -46,6 +53,7 @@ nav ul li a {
   color: white;
   font-size: 13px;
   letter-spacing: 2px;
+  transition: 0.3s;
 }
 
 nav ul li a:hover {
@@ -60,30 +68,36 @@ nav ul li a:hover {
 /* CART PANEL */
 .cart-panel {
   position: fixed;
-  right: -400px;
   top: 0;
+  right: -400px;
   width: 350px;
   height: 100vh;
   background: #111;
   padding: 30px;
-  transition: 0.4s ease;
-  z-index: 2000;
+  transition: right 0.4s ease;
+  z-index: 9999;
   overflow-y: auto;
+  box-shadow: -5px 0 20px rgba(0,0,0,0.8);
 }
 
 .cart-panel.active {
   right: 0;
 }
 
+.cart-panel h2 {
+  margin-bottom: 20px;
+}
+
 .cart-item {
-  margin: 15px 0;
-  border-bottom: 1px solid #333;
+  margin-bottom: 15px;
   padding-bottom: 10px;
+  border-bottom: 1px solid #333;
 }
 
 /* HERO */
 .hero {
   height: 100vh;
+  padding-top: 120px;
   background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
   url('https://images.unsplash.com/photo-1520975928318-3b7f70d3a7e7?auto=format&fit=crop&w=1400&q=80') center/cover;
   display: flex;
@@ -97,7 +111,6 @@ nav ul li a:hover {
   font-family: 'Playfair Display', serif;
   font-size: 70px;
   letter-spacing: 6px;
-  margin: 0;
 }
 
 .hero h2 {
@@ -107,7 +120,7 @@ nav ul li a:hover {
 }
 
 .btn {
-  margin-top: 50px;
+  margin-top: 40px;
   padding: 15px 50px;
   border: 1px solid white;
   background: transparent;
@@ -115,6 +128,7 @@ nav ul li a:hover {
   cursor: pointer;
   font-size: 12px;
   letter-spacing: 3px;
+  transition: 0.3s;
 }
 
 .btn:hover {
@@ -122,12 +136,32 @@ nav ul li a:hover {
   color: black;
 }
 
+/* SECTIONS */
+.section {
+  padding: 120px 10%;
+  text-align: center;
+}
+
+.section h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  letter-spacing: 4px;
+  margin-bottom: 20px;
+}
+
+.section p {
+  max-width: 600px;
+  margin: auto;
+  color: #bbb;
+  line-height: 1.8;
+}
+
 /* PRODUCTS */
 .products {
+  padding: 120px 10%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 40px;
-  padding: 120px 10%;
 }
 
 .product {
@@ -141,13 +175,21 @@ nav ul li a:hover {
   border-radius: 10px;
 }
 
+.product h3 {
+  margin-top: 15px;
+}
+
+.product p {
+  margin: 10px 0;
+}
+
 .product button {
-  margin-top: 10px;
   padding: 10px 20px;
   border: none;
   background: black;
   color: white;
   cursor: pointer;
+  transition: 0.3s;
 }
 
 .product button:hover {
@@ -162,9 +204,9 @@ footer {
   color: #777;
   letter-spacing: 2px;
 }
+
 </style>
 </head>
-
 <body>
 
 <nav>
@@ -172,6 +214,7 @@ footer {
   <ul>
     <li><a href="#home">HOME</a></li>
     <li><a href="#shop">SHOP</a></li>
+    <li><a href="#about">ABOUT</a></li>
   </ul>
   <div class="cart-icon" onclick="toggleCart()">
     🛒 <span id="cart-count">0</span>
@@ -188,6 +231,14 @@ footer {
   <h1>ZAYVERO</h1>
   <h2>Power. Elevation. Presence.</h2>
   <a href="#shop"><button class="btn">SHOP COLLECTION</button></a>
+</div>
+
+<div class="section" id="about">
+  <h3>OUR IDENTITY</h3>
+  <p>
+    ZAYVERO is a global fashion movement designed for presence.
+    A statement for those who elevate everyday and wear their power unapologetically.
+  </p>
 </div>
 
 <div class="products" id="shop">
