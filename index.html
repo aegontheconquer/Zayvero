@@ -9,6 +9,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 1s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
     body {
       margin: 0;
       font-family: 'Montserrat', sans-serif;
@@ -173,7 +183,7 @@ nav ul li a:hover {
 </a>
   </div>
 
-  <div class="section" id="about">
+  <div class="section reveal" id="about">
     <h3>OUR IDENTITY</h3>
     <p>
       ZAYVERO is a global fashion movement designed for presence.
@@ -181,7 +191,7 @@ nav ul li a:hover {
     </p>
   </div>
 
-  <div class="section" id="shop">
+  <div class="section reveal" id="shop">
     <h3>FEATURED COLLECTION</h3>
     <div class="collection">
       <div class="card">
@@ -202,6 +212,23 @@ nav ul li a:hover {
   <footer>
     © 2026 ZAYVERO. Power. Elevation. Presence.
   </footer>
+<script>
+  function revealOnScroll() {
+    const reveals = document.querySelectorAll('.reveal');
 
+    for (let i = 0; i < reveals.length; i++) {
+      const windowHeight = window.innerHeight;
+      const elementTop = reveals[i].getBoundingClientRect().top;
+      const elementVisible = 100;
+
+      if (elementTop < windowHeight - elementVisible) {
+        reveals[i].classList.add("active");
+      }
+    }
+  }
+
+  window.addEventListener("scroll", revealOnScroll);
+  revealOnScroll();
+</script>
 </body>
 </html>
