@@ -9,6 +9,43 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  padding: 40px 10%;
+}
+
+.product {
+  text-align: center;
+  transition: 0.4s ease;
+}
+
+.product img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: 0.4s ease;
+}
+
+.product:hover img {
+  transform: scale(1.05);
+}
+
+.product button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  border: none;
+  background: black;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.product button:hover {
+  background: #444;
+}
 .hero h1 {
   animation: fadeDown 1.5s ease forwards;
   opacity: 0;
@@ -227,23 +264,51 @@ nav ul li a:hover {
     </p>
   </div>
 
-  <div class="section reveal" id="shop">
-    <h3>FEATURED COLLECTION</h3>
-    <div class="collection">
-      <div class="card">
-        <h4>Signature Hoodie</h4>
-        <p>$89</p>
-      </div>
-      <div class="card">
-        <h4>Minimal Tee</h4>
-        <p>$45</p>
-      </div>
-      <div class="card">
-        <h4>Luxury Jacket</h4>
-        <p>$190</p>
-      </div>
-    </div>
+  <div class="products">
+
+  <div class="product">
+    <img src="https://images.unsplash.com/photo-1520975916090-3105956dac38" alt="">
+    <h3>Shadow Bomber</h3>
+    <p>$110</p>
+    <button>Add to Cart</button>
   </div>
+
+  <div class="product">
+    <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab" alt="">
+    <h3>Essential White Tee</h3>
+    <p>$45</p>
+    <button>Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="https://images.unsplash.com/photo-1516826957135-700dedea698c" alt="">
+    <h3>Urban Grey Hoodie</h3>
+    <p>$85</p>
+    <button>Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="https://images.unsplash.com/photo-1520962917950-2db5f77c31a3" alt="">
+    <h3>Midnight Silk Dress</h3>
+    <p>$120</p>
+    <button>Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb" alt="">
+    <h3>Sculpt Tank</h3>
+    <p>$55</p>
+    <button>Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3" alt="">
+    <h3>Ivory Icon Bag</h3>
+    <p>$140</p>
+    <button>Add to Cart</button>
+  </div>
+
+</div>
 
   <footer>
     © 2026 ZAYVERO. Power. Elevation. Presence.
