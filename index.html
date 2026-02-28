@@ -4,34 +4,58 @@
   <meta charset="UTF-8">
   <title>ZAYVERO</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background-color: #000;
+      background: #000;
       color: #fff;
-      text-align: center;
     }
 
+    /* NAVBAR */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      background: rgba(0,0,0,0.9);
+    }
+
+    nav h1 {
+      letter-spacing: 4px;
+      font-size: 20px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    nav ul li {
+      cursor: pointer;
+      font-size: 14px;
+      letter-spacing: 2px;
+    }
+
+    /* HERO */
     .hero {
       height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      text-align: center;
     }
 
-    h1 {
-      font-size: 60px;
-      letter-spacing: 5px;
-      margin: 0;
-    }
-
-    h2 {
-      font-size: 20px;
-      font-weight: 300;
-      margin-top: 20px;
+    .hero h2 {
+      font-size: 18px;
       letter-spacing: 3px;
+      margin-top: 20px;
     }
 
     .btn {
@@ -50,15 +74,103 @@
       background: white;
       color: black;
     }
+
+    /* ABOUT SECTION */
+    .section {
+      padding: 100px 50px;
+      text-align: center;
+    }
+
+    .section h3 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      letter-spacing: 3px;
+    }
+
+    .section p {
+      max-width: 600px;
+      margin: auto;
+      line-height: 1.6;
+      color: #ccc;
+    }
+
+    /* COLLECTION */
+    .collection {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin-top: 50px;
+    }
+
+    .card {
+      border: 1px solid #333;
+      padding: 40px;
+      width: 200px;
+      text-align: center;
+    }
+
+    .card h4 {
+      margin-bottom: 10px;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 40px;
+      text-align: center;
+      border-top: 1px solid #222;
+      font-size: 12px;
+      color: #777;
+    }
   </style>
 </head>
 <body>
+
+  <nav>
+    <h1>ZAYVERO</h1>
+    <ul>
+      <li>HOME</li>
+      <li>SHOP</li>
+      <li>ABOUT</li>
+      <li>CONTACT</li>
+    </ul>
+  </nav>
 
   <div class="hero">
     <h1>ZAYVERO</h1>
     <h2>Power. Elevation. Presence.</h2>
     <button class="btn">SHOP COLLECTION</button>
   </div>
+
+  <div class="section">
+    <h3>OUR IDENTITY</h3>
+    <p>
+      ZAYVERO is a modern fashion movement built for presence.
+      Designed for those who lead, elevate, and express power through style.
+    </p>
+  </div>
+
+  <div class="section">
+    <h3>FEATURED COLLECTION</h3>
+    <div class="collection">
+      <div class="card">
+        <h4>Signature Hoodie</h4>
+        <p>$89</p>
+      </div>
+      <div class="card">
+        <h4>Minimal Tee</h4>
+        <p>$45</p>
+      </div>
+      <div class="card">
+        <h4>Luxury Jacket</h4>
+        <p>$190</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    © 2026 ZAYVERO. All Rights Reserved.
+  </footer>
 
 </body>
 </html>
