@@ -9,81 +9,22 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{
-font-family:'Montserrat',sans-serif;
-background:#000;
-color:#fff;
-overflow-x:hidden;
-}
-
-/* PAGE FADE TRANSITION */
-body{
-opacity:0;
-transition:opacity 1s ease;
-}
-body.loaded{
-opacity:1;
-}
-
-/* LOADER */
-#loader{
-position:fixed;
-width:100%;
-height:100vh;
-background:#000;
-display:flex;
-justify-content:center;
-align-items:center;
-z-index:99999;
-transition:1s ease;
-}
-#loader h1{
-font-family:'Playfair Display',serif;
-font-size:70px;
-letter-spacing:10px;
-animation:fade 2s ease;
-}
-@keyframes fade{
-from{opacity:0;letter-spacing:25px}
-to{opacity:1;letter-spacing:10px}
-}
-#loader.hidden{
-opacity:0;
-pointer-events:none;
-}
+body{font-family:'Montserrat',sans-serif;background:#000;color:#fff;overflow-x:hidden}
 
 /* NAV */
 nav{
 position:fixed;
 width:100%;
-padding:30px 100px;
+padding:25px 80px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-background:rgba(0,0,0,0.6);
-backdrop-filter:blur(15px);
+background:rgba(0,0,0,0.7);
+backdrop-filter:blur(10px);
 z-index:1000;
-transition:0.4s;
 }
-nav.shrink{
-padding:18px 100px;
-background:rgba(0,0,0,0.9);
-}
-nav h1{
-font-family:'Playfair Display',serif;
-letter-spacing:6px;
-}
-nav ul{
-display:flex;
-gap:50px;
-list-style:none;
-}
-nav a{
-color:white;
-text-decoration:none;
-font-size:12px;
-letter-spacing:3px;
-}
+nav ul{display:flex;gap:40px;list-style:none}
+nav a{text-decoration:none;color:white;font-size:12px;letter-spacing:3px}
 .cart-icon{cursor:pointer}
 
 /* HERO */
@@ -93,81 +34,89 @@ display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-text-align:center;
 background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
 url('https://images.unsplash.com/photo-1520975928318-3b7f70d3a7e7?auto=format&fit=crop&w=1600&q=80') center/cover;
+text-align:center;
 }
-.hero h1{
-font-family:'Playfair Display',serif;
-font-size:90px;
-letter-spacing:10px;
+.hero h1{font-family:'Playfair Display',serif;font-size:90px;letter-spacing:10px}
+
+/* SECTION */
+.section{padding:140px 10%}
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:60px;
 }
-.hero h2{
-margin-top:20px;
-letter-spacing:6px;
-font-weight:300;
-}
-.btn{
-margin-top:50px;
-padding:16px 70px;
+.product{text-align:center}
+.product img{width:100%;height:420px;object-fit:cover;border-radius:16px}
+.product h3{margin-top:20px}
+.product p{margin:10px 0;color:#aaa}
+.product button{
+padding:10px 30px;
 border:1px solid white;
 background:transparent;
 color:white;
 cursor:pointer;
-letter-spacing:4px;
-transition:0.4s;
-}
-.btn:hover{
-background:white;
-color:black;
 }
 
-/* SECTIONS */
-.section{
-padding:160px 12%;
+/* CART PANEL */
+#overlay{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.7);
 opacity:0;
-transform:translateY(60px);
-transition:1s ease;
+visibility:hidden;
+transition:0.4s;
+z-index:2000;
 }
-.section.visible{
+#overlay.active{
 opacity:1;
-transform:translateY(0);
+visibility:visible;
 }
+.cart-panel{
+position:fixed;
+top:0;
+right:-400px;
+width:350px;
+height:100vh;
+background:#111;
+padding:40px;
+transition:0.5s;
+z-index:3000;
+overflow-y:auto;
+}
+.cart-panel.active{right:0}
 
-/* PRODUCTS */
-.products{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-gap:70px;
+.cart-item{
+margin-bottom:15px;
+display:flex;
+justify-content:space-between;
+font-size:14px;
 }
-.product{
-text-align:center;
+.cart-total{
+margin-top:20px;
+font-size:18px;
+}
+.checkout-btn{
+margin-top:20px;
+padding:10px 20px;
+border:1px solid white;
+background:transparent;
+color:white;
 cursor:pointer;
 }
-.product img{
-width:100%;
-height:450px;
-object-fit:cover;
-border-radius:18px;
-transition:0.6s;
-}
-.product img:hover{
-transform:scale(1.05);
-}
-.product h3{margin-top:20px}
-.product p{margin:10px 0;color:#aaa}
 
 /* MODAL */
 .modal{
 position:fixed;
 inset:0;
-background:rgba(0,0,0,0.85);
+background:rgba(0,0,0,0.8);
 display:flex;
 justify-content:center;
 align-items:center;
 opacity:0;
 visibility:hidden;
-transition:0.4s;
+transition:0.3s;
 z-index:5000;
 }
 .modal.active{
@@ -177,139 +126,90 @@ visibility:visible;
 .modal-content{
 background:#111;
 padding:40px;
-max-width:700px;
-width:90%;
 border-radius:20px;
+width:90%;
+max-width:500px;
 text-align:center;
 }
-
-/* CART */
-#overlay{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,0.8);
-opacity:0;
-visibility:hidden;
-transition:0.4s;
-z-index:3000;
-}
-#overlay.active{
-opacity:1;
-visibility:visible;
-}
-.cart-panel{
-position:fixed;
-right:-420px;
-top:0;
-width:380px;
-height:100vh;
-background:#111;
-padding:40px;
-transition:0.6s;
-z-index:4000;
-overflow-y:auto;
-}
-.cart-panel.active{right:0}
-
-/* CHECKOUT FORM */
-.checkout-form input{
+.modal-content input{
 width:100%;
-padding:12px;
+padding:10px;
 margin:10px 0;
 background:#000;
 border:1px solid #333;
 color:white;
 }
-.checkout-form button{
-margin-top:15px;
-padding:12px 40px;
-border:1px solid white;
-background:transparent;
-color:white;
-cursor:pointer;
-}
-
-/* FOOTER */
-footer{
-padding:100px;
-text-align:center;
-border-top:1px solid #222;
-letter-spacing:4px;
-font-size:12px;
-color:#777;
-}
 </style>
 </head>
 <body>
 
-<div id="loader"><h1>ZAYVERO</h1></div>
-
-<nav id="navbar">
+<nav>
 <h1>ZAYVERO</h1>
 <ul>
 <li><a href="#home">HOME</a></li>
-<li><a href="#about">ABOUT</a></li>
 <li><a href="#shop">SHOP</a></li>
 </ul>
 <div class="cart-icon" onclick="toggleCart()">🛒 <span id="cart-count">0</span></div>
 </nav>
 
-<div class="hero" id="home">
-<h1>ZAYVERO</h1>
-<h2>Power. Elevation. Presence.</h2>
-<a href="#shop"><button class="btn">SHOP COLLECTION</button></a>
+<div id="overlay" onclick="toggleCart()"></div>
+
+<div class="cart-panel" id="cartPanel">
+<h2>Your Cart</h2>
+<div id="cartItems"></div>
+<div class="cart-total">Total: $<span id="cartTotal">0</span></div>
+<button class="checkout-btn" onclick="openCheckout()">Checkout</button>
 </div>
 
-<div class="section" id="about">
-<h2 style="font-family:Playfair Display;font-size:40px;letter-spacing:5px;margin-bottom:30px;">OUR IDENTITY</h2>
-<p style="max-width:700px;margin:auto;color:#bbb;line-height:1.9;">
-ZAYVERO is built for controlled dominance. Precision silhouettes. Elevated minimalism.
-Luxury that speaks before you do.
-</p>
+<div class="hero" id="home">
+<h1>ZAYVERO</h1>
 </div>
 
 <div class="section" id="shop">
 <div class="products">
 
-<!-- KEEPING ALL PRODUCTS -->
-
-<div class="product" onclick="openProduct('Shadow Bomber',110)">
+<div class="product">
 <img src="https://images.unsplash.com/photo-1520975916090-3105956dac38?auto=format&fit=crop&w=900&q=80">
-<h3>Shadow Bomber</h3><p>$110</p></div>
+<h3>Shadow Bomber</h3>
+<p>$110</p>
+<button onclick="addToCart('Shadow Bomber',110)">Add to Cart</button>
+</div>
 
-<div class="product" onclick="openProduct('Essential White Tee',45)">
+<div class="product">
 <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80">
-<h3>Essential White Tee</h3><p>$45</p></div>
+<h3>Essential White Tee</h3>
+<p>$45</p>
+<button onclick="addToCart('Essential White Tee',45)">Add to Cart</button>
+</div>
 
-<div class="product" onclick="openProduct('Urban Grey Hoodie',85)">
+<div class="product">
 <img src="https://images.unsplash.com/photo-1516826957135-700dedea698c?auto=format&fit=crop&w=900&q=80">
-<h3>Urban Grey Hoodie</h3><p>$85</p></div>
+<h3>Urban Grey Hoodie</h3>
+<p>$85</p>
+<button onclick="addToCart('Urban Grey Hoodie',85)">Add to Cart</button>
+</div>
 
-<div class="product" onclick="openProduct('Elite Black Suit',240)">
+<div class="product">
 <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=900&q=80">
-<h3>Elite Black Suit</h3><p>$240</p></div>
+<h3>Elite Black Suit</h3>
+<p>$240</p>
+<button onclick="addToCart('Elite Black Suit',240)">Add to Cart</button>
+</div>
 
-<div class="product" onclick="openProduct('Classic Denim Jacket',95)">
+<div class="product">
 <img src="https://images.unsplash.com/photo-1503342452485-86d0b4c6c1d2?auto=format&fit=crop&w=900&q=80">
-<h3>Classic Denim Jacket</h3><p>$95</p></div>
+<h3>Classic Denim Jacket</h3>
+<p>$95</p>
+<button onclick="addToCart('Classic Denim Jacket',95)">Add to Cart</button>
+</div>
 
-<div class="product" onclick="openProduct('Luxury Knit Sweater',120)">
+<div class="product">
 <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=900&q=80">
-<h3>Luxury Knit Sweater</h3><p>$120</p></div>
-
+<h3>Luxury Knit Sweater</h3>
+<p>$120</p>
+<button onclick="addToCart('Luxury Knit Sweater',120)">Add to Cart</button>
 </div>
-</div>
 
-<footer>© 2026 ZAYVERO — Power. Elevation. Presence.</footer>
-
-<!-- PRODUCT MODAL -->
-<div class="modal" id="productModal">
-<div class="modal-content">
-<h2 id="modalTitle"></h2>
-<p id="modalPrice"></p>
-<button onclick="addToCart(selectedProduct.name,selectedProduct.price)">Add to Cart</button>
-<br><br>
-<button onclick="closeProduct()">Close</button>
 </div>
 </div>
 
@@ -317,71 +217,68 @@ Luxury that speaks before you do.
 <div class="modal" id="checkoutModal">
 <div class="modal-content">
 <h2>Checkout</h2>
-<form class="checkout-form" onsubmit="completeCheckout(event)">
+<form onsubmit="completeCheckout(event)">
 <input placeholder="Full Name" required>
 <input placeholder="Email" required>
 <input placeholder="Address" required>
-<button type="submit">Complete Order</button>
+<button type="submit" class="checkout-btn">Place Order</button>
 </form>
 </div>
 </div>
 
 <script>
-let cart=JSON.parse(localStorage.getItem("zayveroCart"))||[];
-let selectedProduct={};
+let cart = JSON.parse(localStorage.getItem("zayveroCart")) || [];
 
-/* LOADER + PAGE FADE */
-window.addEventListener("load",()=>{
-document.body.classList.add("loaded");
-setTimeout(()=>{document.getElementById("loader").classList.add("hidden");},1500);
-});
-
-/* NAV SHRINK */
-window.addEventListener("scroll",()=>{
-document.getElementById("navbar").classList.toggle("shrink",window.scrollY>50);
-});
-
-/* SECTION ANIMATION */
-const observer=new IntersectionObserver(entries=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting){entry.target.classList.add("visible");}
-});
-},{threshold:0.2});
-document.querySelectorAll(".section").forEach(el=>observer.observe(el));
-
-/* PRODUCT MODAL */
-function openProduct(name,price){
-selectedProduct={name,price};
-document.getElementById("modalTitle").innerText=name;
-document.getElementById("modalPrice").innerText="$"+price;
-document.getElementById("productModal").classList.add("active");
-}
-function closeProduct(){
-document.getElementById("productModal").classList.remove("active");
+function saveCart(){
+localStorage.setItem("zayveroCart", JSON.stringify(cart));
+updateCartUI();
 }
 
-/* CART */
-function toggleCart(){
-document.getElementById("overlay").classList.toggle("active");
-document.getElementById("cart-panel")?.classList.toggle("active");
+function updateCartUI(){
+const cartItems = document.getElementById("cartItems");
+const cartCount = document.getElementById("cart-count");
+const cartTotal = document.getElementById("cartTotal");
+
+cartItems.innerHTML = "";
+let total = 0;
+
+cart.forEach((item,index)=>{
+total += item.price;
+cartItems.innerHTML += `
+<div class="cart-item">
+<span>${item.name}</span>
+<span>$${item.price}</span>
+</div>`;
+});
+
+cartCount.textContent = cart.length;
+cartTotal.textContent = total;
 }
+
 function addToCart(name,price){
 cart.push({name,price});
-localStorage.setItem("zayveroCart",JSON.stringify(cart));
-alert("Added to cart");
+saveCart();
 }
 
-/* CHECKOUT */
+function toggleCart(){
+document.getElementById("overlay").classList.toggle("active");
+document.getElementById("cartPanel").classList.toggle("active");
+}
+
 function openCheckout(){
 document.getElementById("checkoutModal").classList.add("active");
 }
+
 function completeCheckout(e){
 e.preventDefault();
-alert("Order placed successfully.");
-cart=[];
-localStorage.setItem("zayveroCart","[]");
+alert("Order placed successfully!");
+cart = [];
+saveCart();
 document.getElementById("checkoutModal").classList.remove("active");
+toggleCart();
 }
+
+updateCartUI();
 </script>
 
 </body>
