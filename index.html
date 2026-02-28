@@ -9,6 +9,41 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
+
+.cart-icon {
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.cart-panel {
+  position: fixed;
+  right: -400px;
+  top: 0;
+  width: 350px;
+  height: 100vh;
+  background: #111;
+  padding: 30px;
+  transition: 0.4s ease;
+  z-index: 2000;
+}
+
+.cart-panel.active {
+  right: 0;
+}
+
+.cart-panel h2 {
+  margin-top: 50px;
+}
+
+.cart-panel p {
+  margin-top: 20px;
+}
+
+.cart-item {
+  margin: 15px 0;
+  display: flex;
+  justify-content: space-between;
+}
 .products {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -239,15 +274,25 @@ nav ul li a:hover {
 </head>
 <body>
 
-  <nav>
-    <h1>ZAYVERO</h1>
-    <ul>
-  <li><a href="#home">HOME</a></li>
-  <li><a href="#shop">SHOP</a></li>
-  <li><a href="#about">ABOUT</a></li>
-  <li><a href="#contact">CONTACT</a></li>
-</ul>
-  </nav>
+ <nav>
+  <h1>ZAYVERO</h1>
+
+  <ul>
+    <li><a href="#home">HOME</a></li>
+    <li><a href="#shop">SHOP</a></li>
+    <li><a href="#about">ABOUT</a></li>
+  </ul>
+
+  <div class="cart-icon" onclick="toggleCart()">
+    🛒 <span id="cart-count">0</span>
+  </div>
+</nav>
+
+<div class="cart-panel" id="cart-panel">
+  <h2>Your Cart</h2>
+  <div id="cart-items"></div>
+  <p>Total: $<span id="cart-total">0</span></p>
+</div>
 
   <div class="hero" id="home">
     <h1>ZAYVERO</h1>
@@ -271,8 +316,45 @@ nav ul li a:hover {
     <img src="https://images.unsplash.com/photo-1520975916090-3105956dac38" alt="">
     <h3>Shadow Bomber</h3>
     <p>$110</p>
-    <button>Add to Cart</button>
+    <button onclick="addToCart('Shadow Bomber', 110)">Add to Cart</button>
   </div>
+
+  <div class="product">
+    <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab" alt="">
+    <h3>Essential White Tee</h3>
+    <p>$45</p>
+    <button onclick="addToCart('Essential White Tee', 45)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="https://images.unsplash.com/photo-1516826957135-700dedea698c" alt="">
+    <h3>Urban Grey Hoodie</h3>
+    <p>$85</p>
+    <button onclick="addToCart('Urban Grey Hoodie', 85)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="https://images.unsplash.com/photo-1520962917950-2db5f77c31a3" alt="">
+    <h3>Midnight Silk Dress</h3>
+    <p>$120</p>
+    <button onclick="addToCart('Midnight Silk Dress', 120)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb" alt="">
+    <h3>Sculpt Tank</h3>
+    <p>$55</p>
+    <button onclick="addToCart('Sculpt Tank', 55)">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3" alt="">
+    <h3>Ivory Icon Bag</h3>
+    <p>$140</p>
+    <button onclick="addToCart('Ivory Icon Bag', 140)">Add to Cart</button>
+  </div>
+
+</div>
 
   <div class="product">
     <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab" alt="">
@@ -315,6 +397,38 @@ nav ul li a:hover {
     © 2026 ZAYVERO. Power. Elevation. Presence.
   </footer>
 <script>
+  let cart = [];
+
+  function toggleCart() {
+    document.getElementById("cart-panel").classList.toggle("active");
+  }
+
+  function addToCart(name, price) {
+    cart.push({ name, price });
+    updateCart();
+  }
+
+  function updateCart() {
+    const cartItems = document.getElementById("cart-items");
+    const cartCount = document.getElementById("cart-count");
+    const cartTotal = document.getElementById("cart-total");
+
+    cartItems.innerHTML = "";
+    let total = 0;
+
+    cart.forEach((item, index) => {
+      total += item.price;
+      cartItems.innerHTML += `
+        <div class="cart-item">
+          ${item.name} - $${item.price}
+        </div>
+      `;
+    });
+
+    cartCount.textContent = cart.length;
+    cartTotal.textContent = total;
+  }
+
   function revealOnScroll() {
     const reveals = document.querySelectorAll('.reveal');
 
