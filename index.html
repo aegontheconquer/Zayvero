@@ -15,9 +15,11 @@ font-family:'Montserrat',sans-serif;
 background:#000;
 color:#fff;
 scroll-behavior:smooth;
+overflow-x:hidden;
 }
 
-/* LOADER */
+/* ================= LOADER ================= */
+
 #loader{
 position:fixed;
 width:100%;
@@ -32,14 +34,14 @@ transition:transform 1.2s cubic-bezier(0.22,1,0.36,1),opacity 1s ease;
 
 #loader h1{
 font-family:'Playfair Display',serif;
-font-size:60px;
-letter-spacing:8px;
+font-size:64px;
+letter-spacing:10px;
 animation:fadeIn 2s ease;
 }
 
 @keyframes fadeIn{
-from{opacity:0;letter-spacing:20px}
-to{opacity:1;letter-spacing:8px}
+from{opacity:0;letter-spacing:25px}
+to{opacity:1;letter-spacing:10px}
 }
 
 #loader.hidden{
@@ -47,49 +49,191 @@ transform:translateY(-100%);
 opacity:0;
 }
 
-/* NAV */
+/* ================= NAV ================= */
+
 nav{
 position:fixed;
 width:100%;
-padding:25px 80px;
+padding:30px 100px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-background:rgba(0,0,0,0.9);
+background:rgba(0,0,0,0.6);
+backdrop-filter:blur(12px);
+transition:0.4s;
 z-index:1000;
+}
+
+nav.shrink{
+padding:18px 100px;
+background:rgba(0,0,0,0.9);
 }
 
 nav h1{
 font-family:'Playfair Display',serif;
-letter-spacing:4px;
-font-size:22px;
+letter-spacing:5px;
+font-size:20px;
 }
 
 nav ul{
 list-style:none;
 display:flex;
-gap:40px;
+gap:50px;
 }
 
 nav a{
 text-decoration:none;
 color:white;
-font-size:13px;
-letter-spacing:2px;
+font-size:12px;
+letter-spacing:3px;
 transition:0.3s;
 }
 
 nav a:hover{opacity:0.6}
 
-.cart-icon{cursor:pointer;font-size:18px}
+.cart-icon{cursor:pointer;font-size:16px}
 
-/* OVERLAY */
+/* ================= HERO ================= */
+
+.hero{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
+url('https://images.unsplash.com/photo-1520975928318-3b7f70d3a7e7?auto=format&fit=crop&w=1600&q=80') center/cover;
+}
+
+.hero h1{
+font-family:'Playfair Display',serif;
+font-size:80px;
+letter-spacing:8px;
+}
+
+.hero h2{
+margin-top:20px;
+letter-spacing:5px;
+font-weight:300;
+}
+
+.btn{
+margin-top:50px;
+padding:16px 60px;
+border:1px solid white;
+background:transparent;
+color:white;
+cursor:pointer;
+letter-spacing:4px;
+transition:0.4s;
+}
+
+.btn:hover{
+background:white;
+color:black;
+}
+
+/* ================= SECTION BASE ================= */
+
+.section{
+padding:140px 12%;
+opacity:0;
+transform:translateY(60px);
+transition:1s cubic-bezier(0.22,1,0.36,1);
+}
+
+.section.visible{
+opacity:1;
+transform:translateY(0);
+}
+
+/* ================= ABOUT ================= */
+
+.about-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:80px;
+align-items:center;
+}
+
+.about-grid img{
+width:100%;
+border-radius:16px;
+object-fit:cover;
+}
+
+.about-text h3{
+font-family:'Playfair Display',serif;
+font-size:40px;
+letter-spacing:4px;
+margin-bottom:30px;
+}
+
+.about-text p{
+line-height:1.9;
+color:#bbb;
+font-size:15px;
+}
+
+/* ================= PRODUCTS ================= */
+
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:60px;
+}
+
+.product{
+text-align:center;
+opacity:0;
+transform:translateY(60px);
+transition:1s cubic-bezier(0.22,1,0.36,1);
+}
+
+.product.visible{
+opacity:1;
+transform:translateY(0);
+}
+
+.product img{
+width:100%;
+height:420px;
+object-fit:cover;
+border-radius:16px;
+transition:0.5s;
+}
+
+.product img:hover{
+transform:scale(1.05);
+}
+
+.product h3{margin-top:20px}
+.product p{margin:10px 0;color:#aaa}
+
+.product button{
+padding:12px 30px;
+border:1px solid white;
+background:transparent;
+color:white;
+cursor:pointer;
+letter-spacing:3px;
+transition:0.4s;
+}
+
+.product button:hover{
+background:white;
+color:black;
+}
+
+/* ================= CART ================= */
+
 #overlay{
 position:fixed;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.6);
-backdrop-filter:blur(6px);
+background:rgba(0,0,0,0.7);
+backdrop-filter:blur(8px);
 opacity:0;
 visibility:hidden;
 transition:0.4s;
@@ -101,126 +245,27 @@ opacity:1;
 visibility:visible;
 }
 
-/* CART */
 .cart-panel{
 position:fixed;
 right:-420px;
 width:380px;
 height:100vh;
 background:#111;
-padding:40px 30px;
-transition:right 0.6s cubic-bezier(0.22,1,0.36,1);
+padding:40px;
+transition:0.6s cubic-bezier(0.22,1,0.36,1);
 z-index:3000;
 overflow-y:auto;
-box-shadow:-20px 0 60px rgba(0,0,0,0.9);
 }
 
 .cart-panel.active{right:0}
 
-.cart-item{
-display:flex;
-justify-content:space-between;
-margin-bottom:15px;
-border-bottom:1px solid #333;
-padding-bottom:10px;
-}
-
-/* HERO */
-.hero{
-height:100vh;
-padding-top:120px;
-background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
-url('https://images.unsplash.com/photo-1520975928318-3b7f70d3a7e7?auto=format&fit=crop&w=1600&q=80') center/cover;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-}
-
-.hero h1{
-font-family:'Playfair Display',serif;
-font-size:70px;
-letter-spacing:6px;
-}
-
-.hero h2{
-margin-top:20px;
-letter-spacing:4px;
-}
-
-.btn{
-margin-top:40px;
-padding:15px 50px;
-border:1px solid white;
-background:transparent;
-color:white;
-cursor:pointer;
-letter-spacing:3px;
-transition:0.3s;
-}
-
-.btn:hover{
-background:white;
-color:black;
-}
-
-/* PRODUCTS */
-.products{
-padding:120px 10%;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:50px;
-}
-
-.product{
-text-align:center;
-opacity:0;
-transform:translateY(60px);
-transition:all 1s cubic-bezier(0.22,1,0.36,1);
-}
-
-.product.visible{
-opacity:1;
-transform:translateY(0);
-}
-
-.product img{
-width:100%;
-height:380px;
-object-fit:cover;
-border-radius:12px;
-transition:0.4s;
-}
-
-.product img:hover{
-transform:scale(1.05);
-}
-
-.product h3{margin-top:15px}
-.product p{margin:10px 0}
-
-.product button{
-padding:12px 25px;
-border:1px solid white;
-background:transparent;
-color:white;
-cursor:pointer;
-letter-spacing:2px;
-transition:0.3s;
-}
-
-.product button:hover{
-background:white;
-color:black;
-}
-
 footer{
-padding:60px;
+padding:80px;
 text-align:center;
 border-top:1px solid #222;
 font-size:12px;
 color:#777;
+letter-spacing:3px;
 }
 </style>
 </head>
@@ -228,17 +273,17 @@ color:#777;
 
 <div id="loader"><h1>ZAYVERO</h1></div>
 
-<nav>
+<nav id="navbar">
 <h1>ZAYVERO</h1>
 <ul>
 <li><a href="#home">HOME</a></li>
+<li><a href="#about">ABOUT</a></li>
 <li><a href="#shop">SHOP</a></li>
 </ul>
 <div class="cart-icon" onclick="toggleCart()">🛒 <span id="cart-count">0</span></div>
 </nav>
 
 <div id="overlay" onclick="toggleCart()"></div>
-
 <div class="cart-panel" id="cart-panel">
 <h2>Your Cart</h2>
 <div id="cart-items"></div>
@@ -251,60 +296,60 @@ color:#777;
 <a href="#shop"><button class="btn">SHOP COLLECTION</button></a>
 </div>
 
-<div class="products" id="shop">
-
-<div class="product">
-<img src="https://images.unsplash.com/photo-1520975916090-3105956dac38?auto=format&fit=crop&w=900&q=80">
-<h3>Shadow Bomber</h3><p>$110</p>
-<button onclick="addToCart('Shadow Bomber',110)">Add to Cart</button>
+<!-- ABOUT SECTION -->
+<div class="section" id="about">
+<div class="about-grid">
+<img src="https://images.unsplash.com/photo-1495121605193-b116b5b09a84?auto=format&fit=crop&w=1000&q=80">
+<div class="about-text">
+<h3>OUR IDENTITY</h3>
+<p>
+ZAYVERO is not just clothing — it is controlled presence.
+Every silhouette is built to command space. Every detail refined.
+Minimalism meets dominance.
+We design for those who elevate rooms without speaking.
+</p>
+</div>
+</div>
 </div>
 
-<div class="product">
-<img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80">
-<h3>Essential White Tee</h3><p>$45</p>
-<button onclick="addToCart('Essential White Tee',45)">Add to Cart</button>
-</div>
+<!-- SHOP -->
+<div class="section" id="shop">
+<div class="products">
 
-<div class="product">
-<img src="https://images.unsplash.com/photo-1516826957135-700dedea698c?auto=format&fit=crop&w=900&q=80">
-<h3>Urban Grey Hoodie</h3><p>$85</p>
-<button onclick="addToCart('Urban Grey Hoodie',85)">Add to Cart</button>
-</div>
+<div class="product"><img src="https://images.unsplash.com/photo-1520975916090-3105956dac38?auto=format&fit=crop&w=900&q=80"><h3>Shadow Bomber</h3><p>$110</p><button onclick="addToCart('Shadow Bomber',110)">Add to Cart</button></div>
 
-<div class="product">
-<img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=900&q=80">
-<h3>Elite Black Suit</h3><p>$240</p>
-<button onclick="addToCart('Elite Black Suit',240)">Add to Cart</button>
-</div>
+<div class="product"><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80"><h3>Essential White Tee</h3><p>$45</p><button onclick="addToCart('Essential White Tee',45)">Add to Cart</button></div>
 
-<div class="product">
-<img src="https://images.unsplash.com/photo-1503342452485-86d0b4c6c1d2?auto=format&fit=crop&w=900&q=80">
-<h3>Classic Denim Jacket</h3><p>$95</p>
-<button onclick="addToCart('Classic Denim Jacket',95)">Add to Cart</button>
-</div>
+<div class="product"><img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=900&q=80"><h3>Elite Black Suit</h3><p>$240</p><button onclick="addToCart('Elite Black Suit',240)">Add to Cart</button></div>
 
-<div class="product">
-<img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=900&q=80">
-<h3>Luxury Knit Sweater</h3><p>$120</p>
-<button onclick="addToCart('Luxury Knit Sweater',120)">Add to Cart</button>
-</div>
+<div class="product"><img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=900&q=80"><h3>Luxury Knit Sweater</h3><p>$120</p><button onclick="addToCart('Luxury Knit Sweater',120)">Add to Cart</button></div>
 
 </div>
+</div>
 
-<footer>© 2026 ZAYVERO. Power. Elevation. Presence.</footer>
+<footer>© 2026 ZAYVERO — Power. Elevation. Presence.</footer>
 
 <script>
 let cart = JSON.parse(localStorage.getItem("zayveroCart")) || [];
 
 /* LOADER */
-window.addEventListener("load",function(){
+window.addEventListener("load",()=>{
 setTimeout(()=>{
 document.getElementById("loader").classList.add("hidden");
 setTimeout(()=>{document.getElementById("loader").style.display="none"},1200);
 },2000);
 });
 
-/* SCROLL ANIMATION */
+/* NAV SHRINK */
+window.addEventListener("scroll",()=>{
+if(window.scrollY>50){
+document.getElementById("navbar").classList.add("shrink");
+}else{
+document.getElementById("navbar").classList.remove("shrink");
+}
+});
+
+/* SECTION ANIMATION */
 const observer=new IntersectionObserver(entries=>{
 entries.forEach(entry=>{
 if(entry.isIntersecting){
@@ -313,7 +358,7 @@ entry.target.classList.add("visible");
 });
 },{threshold:0.2});
 
-document.querySelectorAll(".product").forEach(el=>observer.observe(el));
+document.querySelectorAll(".section,.product").forEach(el=>observer.observe(el));
 
 /* CART */
 function toggleCart(){
@@ -327,14 +372,9 @@ saveCart();
 updateCart();
 }
 
-function removeFromCart(index){
-cart.splice(index,1);
-saveCart();
-updateCart();
-}
-
 function saveCart(){
 localStorage.setItem("zayveroCart",JSON.stringify(cart));
+updateCart();
 }
 
 function updateCart(){
@@ -347,12 +387,7 @@ let total=0;
 
 cart.forEach((item,index)=>{
 total+=item.price;
-cartItems.innerHTML+=`
-<div class="cart-item">
-<div>${item.name} - $${item.price}</div>
-<button onclick="removeFromCart(${index})" style="background:red;border:none;color:white;padding:5px 10px;cursor:pointer;">X</button>
-</div>
-`;
+cartItems.innerHTML+=`<div>${item.name} - $${item.price}</div>`;
 });
 
 cartCount.textContent=cart.length;
