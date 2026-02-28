@@ -25,8 +25,6 @@ body {
 
 #loader {
   position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100vh;
   background: #000;
@@ -34,8 +32,7 @@ body {
   justify-content: center;
   align-items: center;
   z-index: 99999;
-  transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1),
-              opacity 1s ease;
+  transition: transform 1.2s cubic-bezier(0.22,1,0.36,1), opacity 1s ease;
 }
 
 #loader h1 {
@@ -59,7 +56,6 @@ body {
 
 nav {
   position: fixed;
-  top: 0;
   width: 100%;
   padding: 25px 80px;
   display: flex;
@@ -86,11 +82,6 @@ nav ul li a {
   color: white;
   font-size: 13px;
   letter-spacing: 2px;
-  transition: 0.3s;
-}
-
-nav ul li a:hover {
-  opacity: 0.6;
 }
 
 .cart-icon {
@@ -102,15 +93,13 @@ nav ul li a:hover {
 
 #overlay {
   position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   background: rgba(0,0,0,0.6);
   backdrop-filter: blur(6px);
   opacity: 0;
   visibility: hidden;
-  transition: 0.5s ease;
+  transition: 0.5s;
   z-index: 2000;
 }
 
@@ -123,13 +112,12 @@ nav ul li a:hover {
 
 .cart-panel {
   position: fixed;
-  top: 0;
   right: -420px;
   width: 380px;
   height: 100vh;
   background: #111;
   padding: 40px 30px;
-  transition: right 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: right 0.6s cubic-bezier(0.22,1,0.36,1);
   z-index: 3000;
   overflow-y: auto;
   box-shadow: -20px 0 60px rgba(0,0,0,0.9);
@@ -143,8 +131,8 @@ nav ul li a:hover {
   display: flex;
   justify-content: space-between;
   margin-bottom: 15px;
-  padding-bottom: 10px;
   border-bottom: 1px solid #333;
+  padding-bottom: 10px;
 }
 
 /* ================= HERO ================= */
@@ -158,7 +146,6 @@ nav ul li a:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
 }
 
 .hero h1 {
@@ -168,9 +155,8 @@ nav ul li a:hover {
 }
 
 .hero h2 {
-  font-size: 18px;
-  letter-spacing: 4px;
   margin-top: 20px;
+  letter-spacing: 4px;
 }
 
 .btn {
@@ -189,27 +175,6 @@ nav ul li a:hover {
   color: black;
 }
 
-/* ================= SECTIONS ================= */
-
-.section {
-  padding: 120px 10%;
-  text-align: center;
-}
-
-.section h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 36px;
-  letter-spacing: 4px;
-  margin-bottom: 20px;
-}
-
-.section p {
-  max-width: 600px;
-  margin: auto;
-  color: #bbb;
-  line-height: 1.8;
-}
-
 /* ================= PRODUCTS ================= */
 
 .products {
@@ -221,6 +186,14 @@ nav ul li a:hover {
 
 .product {
   text-align: center;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.22,1,0.36,1);
+}
+
+.product.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .product img {
@@ -237,11 +210,6 @@ nav ul li a:hover {
   background: black;
   color: white;
   cursor: pointer;
-  transition: 0.3s;
-}
-
-.product button:hover {
-  background: #444;
 }
 
 footer {
@@ -255,21 +223,15 @@ footer {
 </head>
 <body>
 
-<!-- LOADER -->
-<div id="loader">
-  <h1>ZAYVERO</h1>
-</div>
+<div id="loader"><h1>ZAYVERO</h1></div>
 
 <nav>
   <h1>ZAYVERO</h1>
   <ul>
     <li><a href="#home">HOME</a></li>
     <li><a href="#shop">SHOP</a></li>
-    <li><a href="#about">ABOUT</a></li>
   </ul>
-  <div class="cart-icon" onclick="toggleCart()">
-    🛒 <span id="cart-count">0</span>
-  </div>
+  <div class="cart-icon" onclick="toggleCart()">🛒 <span id="cart-count">0</span></div>
 </nav>
 
 <div id="overlay" onclick="toggleCart()"></div>
@@ -286,58 +248,57 @@ footer {
   <a href="#shop"><button class="btn">SHOP COLLECTION</button></a>
 </div>
 
-<div class="section" id="about">
-  <h3>OUR IDENTITY</h3>
-  <p>
-    ZAYVERO is a global fashion movement designed for presence.
-    A statement for those who elevate everyday and wear their power unapologetically.
-  </p>
-</div>
-
 <div class="products" id="shop">
-  <div class="product">
-    <img src="https://images.unsplash.com/photo-1520975916090-3105956dac38" alt="">
-    <h3>Shadow Bomber</h3>
-    <p>$110</p>
-    <button onclick="addToCart('Shadow Bomber',110)">Add to Cart</button>
-  </div>
 
-  <div class="product">
-    <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab" alt="">
-    <h3>Essential White Tee</h3>
-    <p>$45</p>
-    <button onclick="addToCart('Essential White Tee',45)">Add to Cart</button>
-  </div>
+  <!-- 8 PRODUCTS -->
 
-  <div class="product">
-    <img src="https://images.unsplash.com/photo-1516826957135-700dedea698c" alt="">
-    <h3>Urban Grey Hoodie</h3>
-    <p>$85</p>
-    <button onclick="addToCart('Urban Grey Hoodie',85)">Add to Cart</button>
-  </div>
+  <div class="product"><img src="https://images.unsplash.com/photo-1520975916090-3105956dac38"><h3>Shadow Bomber</h3><p>$110</p><button onclick="addToCart('Shadow Bomber',110)">Add to Cart</button></div>
+
+  <div class="product"><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab"><h3>Essential White Tee</h3><p>$45</p><button onclick="addToCart('Essential White Tee',45)">Add to Cart</button></div>
+
+  <div class="product"><img src="https://images.unsplash.com/photo-1516826957135-700dedea698c"><h3>Urban Grey Hoodie</h3><p>$85</p><button onclick="addToCart('Urban Grey Hoodie',85)">Add to Cart</button></div>
+
+  <div class="product"><img src="https://images.unsplash.com/photo-1520974735194-8d1d2f2a7f5d"><h3>Midnight Trench</h3><p>$160</p><button onclick="addToCart('Midnight Trench',160)">Add to Cart</button></div>
+
+  <div class="product"><img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d"><h3>Elite Black Suit</h3><p>$240</p><button onclick="addToCart('Elite Black Suit',240)">Add to Cart</button></div>
+
+  <div class="product"><img src="https://images.unsplash.com/photo-1503342452485-86d0b4c6c1d2"><h3>Classic Denim Jacket</h3><p>$95</p><button onclick="addToCart('Classic Denim Jacket',95)">Add to Cart</button></div>
+
+  <div class="product"><img src="https://images.unsplash.com/photo-1520975661595-6453be3f7070"><h3>Signature Tracksuit</h3><p>$130</p><button onclick="addToCart('Signature Tracksuit',130)">Add to Cart</button></div>
+
+  <div class="product"><img src="https://images.unsplash.com/photo-1509631179647-0177331693ae"><h3>Luxury Knit Sweater</h3><p>$120</p><button onclick="addToCart('Luxury Knit Sweater',120)">Add to Cart</button></div>
+
 </div>
 
-<footer>
-© 2026 ZAYVERO. Power. Elevation. Presence.
-</footer>
+<footer>© 2026 ZAYVERO. Power. Elevation. Presence.</footer>
 
 <script>
 let cart = JSON.parse(localStorage.getItem("zayveroCart")) || [];
 
 /* LOADER */
-window.addEventListener("load", function () {
-  const loader = document.getElementById("loader");
-
+window.addEventListener("load", function() {
   setTimeout(() => {
-    loader.classList.add("hidden");
-
+    document.getElementById("loader").classList.add("hidden");
     setTimeout(() => {
-      loader.style.display = "none";
+      document.getElementById("loader").style.display = "none";
     }, 1200);
-
   }, 2000);
 });
 
+/* FADE IN ON SCROLL */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+    }
+  });
+}, { threshold: 0.2 });
+
+document.querySelectorAll(".product").forEach(product => {
+  observer.observe(product);
+});
+
+/* CART */
 function toggleCart() {
   document.getElementById("cart-panel").classList.toggle("active");
   document.getElementById("overlay").classList.toggle("active");
@@ -372,7 +333,7 @@ function updateCart() {
     cartItems.innerHTML += `
       <div class="cart-item">
         <div>${item.name} - $${item.price}</div>
-        <button onclick="removeFromCart(${index})" style="background:red;border:none;color:white;padding:5px 10px;cursor:pointer;">X</button>
+        <button onclick="removeFromCart(${index})" style="background:red;border:none;color:white;padding:5px 10px;">X</button>
       </div>
     `;
   });
