@@ -8,253 +8,313 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-
-.product{
-transition:transform .4s ease, box-shadow .4s ease;
-}
-
-.product:hover{
-transform:translateY(-12px);
-box-shadow:0 20px 40px rgba(255,255,255,0.08);
-}
-
 *{margin:0;padding:0;box-sizing:border-box}
 body{
-font-family:'Montserrat',sans-serif;
-background:#000;
-color:#fff;
-overflow-x:hidden;
-scroll-behavior:smooth;
+  font-family:'Montserrat',sans-serif;
+  background:#000;
+  color:#fff;
+  overflow-x:hidden;
+  scroll-behavior:smooth;
 }
 
 /* NAV */
 nav{
-position:fixed;
-top:0;
-width:100%;
-padding:25px 80px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-background:rgba(0,0,0,0.7);
-backdrop-filter:blur(10px);
-z-index:1000;
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:25px 80px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(0,0,0,0.7);
+  backdrop-filter:blur(10px);
+  z-index:1000;
 }
 nav h1{
-font-family:'Playfair Display',serif;
-letter-spacing:4px;
+  font-family:'Playfair Display',serif;
+  letter-spacing:4px;
 }
 nav ul{display:flex;gap:40px;list-style:none}
 nav a{
-text-decoration:none;
-color:white;
-font-size:12px;
-letter-spacing:3px;
-transition:.3s;
+  text-decoration:none;
+  color:white;
+  font-size:12px;
+  letter-spacing:3px;
+  transition:.3s;
 }
 nav a:hover{opacity:.6}
 .cart-icon{cursor:pointer}
 
 /* HERO */
 .hero{
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
-url('https://images.unsplash.com/photo-1520975928318-3b7f70d3a7e7?auto=format&fit=crop&w=1600&q=80') center/cover;
-text-align:center;
-padding-top:80px;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
+  url('https://images.unsplash.com/photo-1520975928318-3b7f70d3a7e7?auto=format&fit=crop&w=1600&q=80') center/cover;
+  text-align:center;
+  padding-top:80px;
 }
 .hero h1{
-font-family:'Playfair Display',serif;
-font-size:90px;
-letter-spacing:10px;
-opacity:0;
-transform:translateY(40px);
-animation:heroReveal 1.5s ease forwards;
-animation-delay:.5s;
+  font-family:'Playfair Display',serif;
+  font-size:90px;
+  letter-spacing:10px;
+  opacity:0;
+  transform:translateY(40px);
+  animation:heroReveal 1.5s ease forwards;
+  animation-delay:.5s;
+}
+@keyframes heroReveal{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
 }
 
-@keyframes heroReveal{
-to{
-opacity:1;
-transform:translateY(0);
-}
-}
 /* SECTIONS */
 .section{
-padding:180px 10%;
-opacity:0;
-transform:translateY(60px);
-transition:1s cubic-bezier(0.22,1,0.36,1);
+  padding:180px 10%;
+  opacity:0;
+  transform:translateY(60px);
+  transition:1s cubic-bezier(0.22,1,0.36,1);
 }
 .section.visible{
-opacity:1;
-transform:translateY(0);
+  opacity:1;
+  transform:translateY(0);
 }
 
-/* ABOUT SECTION (BIGGER + CENTERED) */
+/* ABOUT SECTION */
 #about{
-min-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
 }
-
 #about h2{
-font-family:'Playfair Display',serif;
-font-size:72px;   /* BIGGER */
-letter-spacing:6px;
-margin-bottom:40px;
+  font-family:'Playfair Display',serif;
+  font-size:72px;
+  letter-spacing:6px;
+  margin-bottom:40px;
 }
-
 #about p{
-max-width:900px;
-font-size:22px;
-line-height:2;
-color:#aaa;
+  max-width:900px;
+  font-size:22px;
+  line-height:2;
+  color:#aaa;
 }
 
 /* PRODUCTS */
 .products{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-gap:60px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:60px;
 }
-.product{text-align:center}
+.product{
+  text-align:center;
+  transition:transform .4s ease, box-shadow .4s ease;
+  cursor:pointer;
+}
+.product:hover{
+  transform:translateY(-12px);
+  box-shadow:0 20px 40px rgba(255,255,255,0.08);
+}
 .product img{
-width:100%;
-height:420px;
-object-fit:cover;
-border-radius:16px;
+  width:100%;
+  height:420px;
+  object-fit:cover;
+  border-radius:16px;
 }
 .product h3{margin-top:20px}
 .product p{margin:10px 0;color:#aaa}
 .product button{
-padding:10px 30px;
-border:1px solid white;
-background:transparent;
-color:white;
-cursor:pointer;
-transition:.3s;
+  padding:10px 30px;
+  border:1px solid white;
+  background:transparent;
+  color:white;
+  cursor:pointer;
+  transition:.3s;
 }
 .product button:hover{
-background:white;
-color:black;
+  background:white;
+  color:black;
 }
 
-/* CART PANEL (UNCHANGED) */
+/* CART PANEL */
 #overlay{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,0.7);
-opacity:0;
-visibility:hidden;
-transition:0.4s;
-z-index:2000;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.7);
+  opacity:0;
+  visibility:hidden;
+  transition:0.4s;
+  z-index:2000;
 }
 #overlay.active{
-opacity:1;
-visibility:visible;
+  opacity:1;
+  visibility:visible;
 }
 .cart-panel{
-position:fixed;
-top:0;
-right:-400px;
-width:360px;
-height:100vh;
-background:#111;
-padding:40px;
-transition:0.4s;
-z-index:3000;
-overflow-y:auto;
+  position:fixed;
+  top:0;
+  right:-400px;
+  width:360px;
+  height:100vh;
+  background:#111;
+  padding:40px;
+  transition:0.4s;
+  z-index:3000;
+  overflow-y:auto;
 }
 .cart-panel.active{right:0}
 
 .cart-item{
-margin-bottom:20px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-font-size:14px;
-border-bottom:1px solid #222;
-padding-bottom:10px;
+  margin-bottom:20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:14px;
+  border-bottom:1px solid #222;
+  padding-bottom:10px;
 }
 
 .qty-btn{
-background:none;
-border:1px solid #444;
-color:white;
-padding:2px 8px;
-cursor:pointer;
-margin:0 4px;
+  background:none;
+  border:1px solid #444;
+  color:white;
+  padding:2px 8px;
+  cursor:pointer;
+  margin:0 4px;
 }
 
 .remove-btn{
-background:none;
-border:none;
-color:red;
-cursor:pointer;
-font-size:16px;
-margin-left:10px;
+  background:none;
+  border:none;
+  color:red;
+  cursor:pointer;
+  font-size:16px;
+  margin-left:10px;
 }
 
 .cart-total{
-margin-top:20px;
-font-size:18px;
+  margin-top:20px;
+  font-size:18px;
 }
 
 .checkout-btn{
-margin-top:20px;
-padding:10px 20px;
-border:1px solid white;
-background:transparent;
-color:white;
-cursor:pointer;
-width:100%;
-transition:.3s;
+  margin-top:20px;
+  padding:10px 20px;
+  border:1px solid white;
+  background:transparent;
+  color:white;
+  cursor:pointer;
+  width:100%;
+  transition:.3s;
 }
 .checkout-btn:hover{
-background:white;
-color:black;
+  background:white;
+  color:black;
 }
 
 /* MODAL */
 .modal{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,0.85);
-display:flex;
-justify-content:center;
-align-items:center;
-opacity:0;
-visibility:hidden;
-transition:0.3s;
-z-index:5000;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.85);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  opacity:0;
+  visibility:hidden;
+  transition:0.3s;
+  z-index:5000;
 }
 .modal.active{
-opacity:1;
-visibility:visible;
+  opacity:1;
+  visibility:visible;
 }
 .modal-content{
-background:#111;
-padding:40px;
-border-radius:20px;
-width:90%;
-max-width:500px;
-text-align:center;
+  background:#111;
+  padding:40px;
+  border-radius:20px;
+  width:90%;
+  max-width:500px;
+  text-align:center;
 }
 .modal-content input{
-width:100%;
-padding:10px;
-margin:10px 0;
-background:#000;
-border:1px solid #333;
-color:white;
+  width:100%;
+  padding:10px;
+  margin:10px 0;
+  background:#000;
+  border:1px solid #333;
+  color:white;
+}
+
+/* ADDED TO CART ANIMATION */
+.added-animation{
+  position:absolute;
+  color:limegreen;
+  font-weight:bold;
+  animation: floatUp 1s ease forwards;
+  pointer-events:none;
+  z-index:5000;
+}
+@keyframes floatUp{
+  0% {opacity:1; transform: translateY(0);}
+  100% {opacity:0; transform: translateY(-50px);}
+}
+
+/* PRODUCT DETAIL MODAL */
+.product-modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.9);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  opacity:0;
+  visibility:hidden;
+  transition:.3s;
+  z-index:6000;
+}
+.product-modal.active{
+  opacity:1;
+  visibility:visible;
+}
+.product-modal-content{
+  background:#111;
+  padding:30px;
+  border-radius:20px;
+  width:90%;
+  max-width:600px;
+  text-align:center;
+  color:#fff;
+  position:relative;
+}
+.product-modal-content img{
+  width:100%;
+  height:350px;
+  object-fit:cover;
+  border-radius:12px;
+  margin-bottom:20px;
+}
+.product-modal-content select{
+  padding:10px;
+  margin:10px;
+  background:#000;
+  border:1px solid #333;
+  color:white;
+}
+.close-product-modal{
+  position:absolute;
+  top:15px;
+  right:20px;
+  font-size:24px;
+  cursor:pointer;
+  color:#fff;
 }
 </style>
 </head>
@@ -296,48 +356,47 @@ We build garments that command space without noise.
 <div class="section" id="shop">
 <div class="products">
 
-<!-- PRODUCTS (UNCHANGED) -->
-
-<div class="product">
+<!-- PRODUCTS -->
+<div class="product" onclick="openProductDetail('Shadow Bomber', 110, 'Shadow Bomber is sleek and commanding, perfect for urban dominance.', ['S','M','L','XL'], ['Black','Grey'])">
 <img src="https://images.unsplash.com/photo-1520975916090-3105956dac38?auto=format&fit=crop&w=900&q=80">
 <h3>Shadow Bomber</h3>
 <p>$110</p>
-<button onclick="addToCart('Shadow Bomber',110)">Add to Cart</button>
+<button onclick="event.stopPropagation(); addToCart('Shadow Bomber',110); showAddedAnimation(event)">Add to Cart</button>
 </div>
 
-<div class="product">
+<div class="product" onclick="openProductDetail('Essential White Tee', 45, 'A crisp, clean essential that pairs with any outfit.', ['S','M','L','XL'], ['White'])">
 <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80">
 <h3>Essential White Tee</h3>
 <p>$45</p>
-<button onclick="addToCart('Essential White Tee',45)">Add to Cart</button>
+<button onclick="event.stopPropagation(); addToCart('Essential White Tee',45); showAddedAnimation(event)">Add to Cart</button>
 </div>
 
-<div class="product">
+<div class="product" onclick="openProductDetail('Urban Grey Hoodie', 85, 'Comfort meets street style in this grey hoodie.', ['S','M','L','XL'], ['Grey','Charcoal'])">
 <img src="https://images.unsplash.com/photo-1516826957135-700dedea698c?auto=format&fit=crop&w=900&q=80">
 <h3>Urban Grey Hoodie</h3>
 <p>$85</p>
-<button onclick="addToCart('Urban Grey Hoodie',85)">Add to Cart</button>
+<button onclick="event.stopPropagation(); addToCart('Urban Grey Hoodie',85); showAddedAnimation(event)">Add to Cart</button>
 </div>
 
-<div class="product">
+<div class="product" onclick="openProductDetail('Elite Black Suit', 240, 'A tailored black suit that exudes confidence.', ['S','M','L','XL'], ['Black'])">
 <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=900&q=80">
 <h3>Elite Black Suit</h3>
 <p>$240</p>
-<button onclick="addToCart('Elite Black Suit',240)">Add to Cart</button>
+<button onclick="event.stopPropagation(); addToCart('Elite Black Suit',240); showAddedAnimation(event)">Add to Cart</button>
 </div>
 
-<div class="product">
+<div class="product" onclick="openProductDetail('Classic Denim Jacket', 95, 'Timeless denim jacket for every wardrobe.', ['S','M','L','XL'], ['Blue','Dark Blue'])">
 <img src="https://images.unsplash.com/photo-1503342452485-86d0b4c6c1d2?auto=format&fit=crop&w=900&q=80">
 <h3>Classic Denim Jacket</h3>
 <p>$95</p>
-<button onclick="addToCart('Classic Denim Jacket',95)">Add to Cart</button>
+<button onclick="event.stopPropagation(); addToCart('Classic Denim Jacket',95); showAddedAnimation(event)">Add to Cart</button>
 </div>
 
-<div class="product">
+<div class="product" onclick="openProductDetail('Luxury Knit Sweater', 120, 'Soft knit sweater, luxurious comfort, modern silhouette.', ['S','M','L','XL'], ['Beige','Black'])">
 <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=900&q=80">
 <h3>Luxury Knit Sweater</h3>
 <p>$120</p>
-<button onclick="addToCart('Luxury Knit Sweater',120)">Add to Cart</button>
+<button onclick="event.stopPropagation(); addToCart('Luxury Knit Sweater',120); showAddedAnimation(event)">Add to Cart</button>
 </div>
 
 </div>
@@ -356,8 +415,20 @@ We build garments that command space without noise.
 </div>
 </div>
 
-<script>
+<!-- PRODUCT DETAIL MODAL -->
+<div class="product-modal" id="productModal" onclick="closeProductDetail(event)">
+<div class="product-modal-content" id="productModalContent">
+<span class="close-product-modal" onclick="closeProductDetail(event)">✕</span>
+<h2 id="modalProductName"></h2>
+<img id="modalProductImage" src="">
+<p id="modalProductDesc"></p>
+<select id="sizeSelector"></select>
+<select id="colorSelector"></select>
+<button class="checkout-btn" id="modalAddBtn">Add to Cart</button>
+</div>
+</div>
 
+<script>
 /* SCROLL ANIMATION */
 const observer = new IntersectionObserver(entries=>{
 entries.forEach(entry=>{
@@ -367,29 +438,17 @@ entry.target.classList.add("visible");
 });
 },{threshold:0.2});
 
-document.querySelectorAll(".section").forEach(el=>{
-observer.observe(el);
-});
-
+document.querySelectorAll(".section").forEach(el=>{observer.observe(el);});
 document.querySelectorAll(".product").forEach((el, index)=>{
 el.style.transitionDelay = (index * 0.15) + "s";
 observer.observe(el);
 });
 
-
-/* CART SYSTEM (UNCHANGED) */
+/* CART SYSTEM */
 let cart = JSON.parse(localStorage.getItem("zayveroCart")) || [];
 
 function saveCart(){
 localStorage.setItem("zayveroCart", JSON.stringify(cart));
-
-/* PARALLAX HERO EFFECT */
-window.addEventListener("scroll", () => {
-const hero = document.querySelector(".hero");
-let offset = window.pageYOffset;
-hero.style.backgroundPositionY = offset * 0.5 + "px";
-});
-
 updateCartUI();
 }
 
@@ -404,7 +463,6 @@ let totalItems = 0;
 
 cart.forEach((item,index)=>{
 if(!item.quantity) item.quantity = 1;
-
 total += item.price * item.quantity;
 totalItems += item.quantity;
 
@@ -438,51 +496,87 @@ cart.push({name,price,quantity:1});
 saveCart();
 }
 
-function increaseQuantity(index){
-cart[index].quantity += 1;
-saveCart();
-}
+// Quantity control
+function increaseQuantity(index){cart[index].quantity+=1; saveCart();}
+function decreaseQuantity(index){if(cart[index].quantity>1){cart[index].quantity-=1}else{cart.splice(index,1)} saveCart();}
+function removeItem(index){cart.splice(index,1); saveCart();}
 
-function decreaseQuantity(index){
-if(cart[index].quantity > 1){
-cart[index].quantity -= 1;
-}else{
-cart.splice(index,1);
-}
-saveCart();
-}
-
-function removeItem(index){
-cart.splice(index,1);
-saveCart();
-}
-
+// Cart toggle
 function toggleCart(){
 document.getElementById("overlay").classList.toggle("active");
 document.getElementById("cartPanel").classList.toggle("active");
 }
 
-function openCheckout(){
-document.getElementById("checkoutModal").classList.add("active");
-}
-
-function closeCheckout(e){
-if(e.target.id === "checkoutModal"){
-document.getElementById("checkoutModal").classList.remove("active");
-}
-}
-
+// Checkout modal
+function openCheckout(){document.getElementById("checkoutModal").classList.add("active");}
+function closeCheckout(e){if(e.target.id==='checkoutModal'){document.getElementById("checkoutModal").classList.remove("active");}}
 function completeCheckout(e){
 e.preventDefault();
 alert("Order placed successfully!");
-cart = [];
+cart=[];
 saveCart();
 document.getElementById("checkoutModal").classList.remove("active");
 toggleCart();
 }
 
-updateCartUI();
+/* PARALLAX HERO EFFECT */
+window.addEventListener("scroll", () => {
+const hero = document.querySelector(".hero");
+let offset = window.pageYOffset;
+hero.style.backgroundPositionY = offset * 0.5 + "px";
+});
 
+/* ADDED TO CART ANIMATION */
+function showAddedAnimation(event){
+const anim = document.createElement('div');
+anim.className = 'added-animation';
+anim.textContent = 'Added!';
+document.body.appendChild(anim);
+anim.style.left = event.clientX + 'px';
+anim.style.top = event.clientY + 'px';
+setTimeout(()=> anim.remove(),1000);
+}
+
+/* PRODUCT DETAIL MODAL */
+function openProductDetail(name, price, desc, sizes, colors){
+document.getElementById('productModal').classList.add('active');
+document.getElementById('modalProductName').textContent = name;
+document.getElementById('modalProductImage').src = event.target.src || event.target.querySelector('img').src;
+document.getElementById('modalProductDesc').textContent = desc;
+
+const sizeSelect = document.getElementById('sizeSelector');
+sizeSelect.innerHTML = '';
+sizes.forEach(s=>{
+  const opt = document.createElement('option'); opt.value=s; opt.textContent=s;
+  sizeSelect.appendChild(opt);
+});
+
+const colorSelect = document.getElementById('colorSelector');
+colorSelect.innerHTML = '';
+colors.forEach(c=>{
+  const opt = document.createElement('option'); opt.value=c; opt.textContent=c;
+  colorSelect.appendChild(opt);
+});
+
+// Add to cart from modal
+const modalBtn = document.getElementById('modalAddBtn');
+modalBtn.onclick = ()=>{
+const selectedSize = sizeSelect.value;
+const selectedColor = colorSelect.value;
+addToCart(`${name} (${selectedSize}, ${selectedColor})`, price);
+showAddedAnimation(event);
+closeProductDetail();
+};
+}
+
+function closeProductDetail(e){
+if(!e || e.target.id==='productModal' || e.target.className==='close-product-modal'){
+document.getElementById('productModal').classList.remove('active');
+}
+}
+
+// INITIAL UI UPDATE
+updateCartUI();
 </script>
 
 </body>
