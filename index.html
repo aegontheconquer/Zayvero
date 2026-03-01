@@ -8,574 +8,205 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{
-  font-family:'Montserrat',sans-serif;
-  background:#000;
-  color:#fff;
-  overflow-x:hidden;
-  scroll-behavior:smooth;
-}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Montserrat',sans-serif;background:#000;color:#fff;overflow-x:hidden;scroll-behavior:smooth;}
 
 /* NAV */
-nav{
-  position:fixed;
-  top:0;
-  width:100%;
-  padding:25px 80px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  background:rgba(0,0,0,0.7);
-  backdrop-filter:blur(10px);
-  z-index:1000;
-}
-nav h1{
-  font-family:'Playfair Display',serif;
-  letter-spacing:4px;
-}
+nav{position:fixed;top:0;width:100%;padding:25px 80px;display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,0.7);backdrop-filter:blur(10px);z-index:1000;}
+nav h1{font-family:'Playfair Display',serif;letter-spacing:4px;}
 nav ul{display:flex;gap:40px;list-style:none}
-nav a{
-  text-decoration:none;
-  color:white;
-  font-size:12px;
-  letter-spacing:3px;
-  transition:.3s;
-}
+nav a{text-decoration:none;color:white;font-size:12px;letter-spacing:3px;transition:.3s;}
 nav a:hover{opacity:.6}
-.cart-icon{cursor:pointer}
+.cart-icon{cursor:pointer;}
 
 /* HERO */
-.hero{
-  height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
-  url('https://images.unsplash.com/photo-1520975928318-3b7f70d3a7e7?auto=format&fit=crop&w=1600&q=80') center/cover;
-  text-align:center;
-  padding-top:80px;
-}
-.hero h1{
-  font-family:'Playfair Display',serif;
-  font-size:90px;
-  letter-spacing:10px;
-  opacity:0;
-  transform:translateY(40px);
-  animation:heroReveal 1.5s ease forwards;
-  animation-delay:.5s;
-}
-@keyframes heroReveal{
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-}
+.hero{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url('https://images.unsplash.com/photo-1520975928318-3b7f70d3a7e7?auto=format&fit=crop&w=1600&q=80') center/cover;text-align:center;padding-top:80px;}
+.hero h1{font-family:'Playfair Display',serif;font-size:90px;letter-spacing:10px;opacity:0;transform:translateY(40px);animation:heroReveal 1.5s ease forwards;animation-delay:.5s;}
+@keyframes heroReveal{to{opacity:1; transform:translateY(0);}}
 
 /* SECTIONS */
-.section{
-  padding:180px 10%;
-  opacity:0;
-  transform:translateY(60px);
-  transition:1s cubic-bezier(0.22,1,0.36,1);
-}
-.section.visible{
-  opacity:1;
-  transform:translateY(0);
-}
+.section{padding:180px 10%;opacity:0;transform:translateY(60px);transition:1s cubic-bezier(0.22,1,0.36,1);}
+.section.visible{opacity:1;transform:translateY(0);}
 
-/* ABOUT SECTION */
-#about{
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-}
-#about h2{
-  font-family:'Playfair Display',serif;
-  font-size:72px;
-  letter-spacing:6px;
-  margin-bottom:40px;
-}
-#about p{
-  max-width:900px;
-  font-size:22px;
-  line-height:2;
-  color:#aaa;
-}
+/* ABOUT */
+#about{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;}
+#about h2{font-family:'Playfair Display',serif;font-size:72px;letter-spacing:6px;margin-bottom:40px;}
+#about p{max-width:900px;font-size:22px;line-height:2;color:#aaa;}
 
 /* PRODUCTS */
-.products{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:60px;
-}
-.product{
-  text-align:center;
-  transition:transform .4s ease, box-shadow .4s ease;
-  cursor:pointer;
-}
-.product:hover{
-  transform:translateY(-12px);
-  box-shadow:0 20px 40px rgba(255,255,255,0.08);
-}
-.product img{
-  width:100%;
-  height:420px;
-  object-fit:cover;
-  border-radius:16px;
-}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:60px;}
+.product{text-align:center;transition:transform .4s ease, box-shadow .4s ease;}
+.product:hover{transform:translateY(-12px);box-shadow:0 20px 40px rgba(255,255,255,0.08);}
+.product img{width:100%;height:420px;object-fit:cover;border-radius:16px;}
 .product h3{margin-top:20px}
 .product p{margin:10px 0;color:#aaa}
-.product button{
-  padding:10px 30px;
-  border:1px solid white;
-  background:transparent;
-  color:white;
-  cursor:pointer;
-  transition:.3s;
-}
-.product button:hover{
-  background:white;
-  color:black;
-}
+.product button{padding:10px 30px;border:1px solid white;background:transparent;color:white;cursor:pointer;transition:.3s;}
+.product button:hover{background:white;color:black;}
 
 /* CART PANEL */
-#overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.7);
-  opacity:0;
-  visibility:hidden;
-  transition:0.4s;
-  z-index:2000;
-}
-#overlay.active{
-  opacity:1;
-  visibility:visible;
-}
-.cart-panel{
-  position:fixed;
-  top:0;
-  right:-400px;
-  width:360px;
-  height:100vh;
-  background:#111;
-  padding:40px;
-  transition:0.4s;
-  z-index:3000;
-  overflow-y:auto;
-}
-.cart-panel.active{right:0}
+#overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);opacity:0;visibility:hidden;transition:0.4s;z-index:2000;}
+#overlay.active{opacity:1;visibility:visible;}
+.cart-panel{position:fixed;top:0;right:-400px;width:360px;height:100vh;background:#111;padding:40px;transition:0.4s;z-index:3000;overflow-y:auto;}
+.cart-panel.active{right:0;}
+.cart-item{margin-bottom:20px;display:flex;justify-content:space-between;align-items:center;font-size:14px;border-bottom:1px solid #222;padding-bottom:10px;}
+.qty-btn{background:none;border:1px solid #444;color:white;padding:2px 8px;cursor:pointer;margin:0 4px;}
+.remove-btn{background:none;border:none;color:red;cursor:pointer;font-size:16px;margin-left:10px;}
+.cart-total{margin-top:20px;font-size:18px;}
+.checkout-btn{margin-top:20px;padding:10px 20px;border:1px solid white;background:transparent;color:white;cursor:pointer;width:100%;transition:.3s;}
+.checkout-btn:hover{background:white;color:black;}
 
-.cart-item{
-  margin-bottom:20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  font-size:14px;
-  border-bottom:1px solid #222;
-  padding-bottom:10px;
-}
+/* MODALS */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,0.85);display:flex;justify-content:center;align-items:center;opacity:0;visibility:hidden;transition:0.3s;z-index:5000;}
+.modal.active{opacity:1;visibility:visible;}
+.modal-content{background:#111;padding:40px;border-radius:20px;width:90%;max-width:500px;text-align:center;}
+.modal-content input, .modal-content select{width:100%;padding:10px;margin:10px 0;background:#000;border:1px solid #333;color:white;}
 
-.qty-btn{
-  background:none;
-  border:1px solid #444;
-  color:white;
-  padding:2px 8px;
-  cursor:pointer;
-  margin:0 4px;
-}
-
-.remove-btn{
-  background:none;
-  border:none;
-  color:red;
-  cursor:pointer;
-  font-size:16px;
-  margin-left:10px;
-}
-
-.cart-total{
-  margin-top:20px;
-  font-size:18px;
-}
-
-.checkout-btn{
-  margin-top:20px;
-  padding:10px 20px;
-  border:1px solid white;
-  background:transparent;
-  color:white;
-  cursor:pointer;
-  width:100%;
-  transition:.3s;
-}
-.checkout-btn:hover{
-  background:white;
-  color:black;
-}
-
-/* MODAL */
-.modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.85);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  opacity:0;
-  visibility:hidden;
-  transition:0.3s;
-  z-index:5000;
-}
-.modal.active{
-  opacity:1;
-  visibility:visible;
-}
-.modal-content{
-  background:#111;
-  padding:40px;
-  border-radius:20px;
-  width:90%;
-  max-width:500px;
-  text-align:center;
-}
-.modal-content input{
-  width:100%;
-  padding:10px;
-  margin:10px 0;
-  background:#000;
-  border:1px solid #333;
-  color:white;
-}
-
-/* ADDED TO CART ANIMATION */
-.added-animation{
-  position:absolute;
-  color:limegreen;
-  font-weight:bold;
-  animation: floatUp 1s ease forwards;
-  pointer-events:none;
-  z-index:5000;
-}
-@keyframes floatUp{
-  0% {opacity:1; transform: translateY(0);}
-  100% {opacity:0; transform: translateY(-50px);}
-}
-
-/* PRODUCT DETAIL MODAL */
-.product-modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.9);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  opacity:0;
-  visibility:hidden;
-  transition:.3s;
-  z-index:6000;
-}
-.product-modal.active{
-  opacity:1;
-  visibility:visible;
-}
-.product-modal-content{
-  background:#111;
-  padding:30px;
-  border-radius:20px;
-  width:90%;
-  max-width:600px;
-  text-align:center;
-  color:#fff;
-  position:relative;
-}
-.product-modal-content img{
-  width:100%;
-  height:350px;
-  object-fit:cover;
-  border-radius:12px;
-  margin-bottom:20px;
-}
-.product-modal-content select{
-  padding:10px;
-  margin:10px;
-  background:#000;
-  border:1px solid #333;
-  color:white;
-}
-.close-product-modal{
-  position:absolute;
-  top:15px;
-  right:20px;
-  font-size:24px;
-  cursor:pointer;
-  color:#fff;
-}
+/* SUCCESS MSG */
+.success-msg{position:fixed;top:20px;right:20px;background:#0f0;color:#000;padding:15px 25px;border-radius:12px;font-weight:bold;opacity:0;transform:translateY(-20px);transition:.5s;z-index:6000;}
+.success-msg.show{opacity:1;transform:translateY(0);}
 </style>
 </head>
 <body>
 
 <nav>
-<h1>ZAYVERO</h1>
-<ul>
-<li><a href="#home">HOME</a></li>
-<li><a href="#about">ABOUT</a></li>
-<li><a href="#shop">SHOP</a></li>
-</ul>
-<div class="cart-icon" onclick="toggleCart()">🛒 <span id="cart-count">0</span></div>
+  <h1>ZAYVERO</h1>
+  <ul>
+    <li><a href="#home">HOME</a></li>
+    <li><a href="#about">ABOUT</a></li>
+    <li><a href="#shop">SHOP</a></li>
+  </ul>
+  <div class="cart-icon" onclick="toggleCart()">🛒 <span id="cart-count">0</span></div>
 </nav>
 
 <div id="overlay" onclick="toggleCart()"></div>
 
 <div class="cart-panel" id="cartPanel">
-<h2>Your Cart</h2>
-<div id="cartItems"></div>
-<div class="cart-total">Total: $<span id="cartTotal">0</span></div>
-<button class="checkout-btn" onclick="openCheckout()">Checkout</button>
+  <h2>Your Cart</h2>
+  <div id="cartItems"></div>
+  <div class="cart-total">Total: EGP <span id="cartTotal">0</span></div>
+  <button class="checkout-btn" onclick="openCheckout()">Checkout</button>
 </div>
 
 <div class="hero" id="home">
-<h1>ZAYVERO</h1>
+  <h1>ZAYVERO</h1>
 </div>
 
-<!-- BIG CENTERED ABOUT -->
 <div class="section" id="about">
-<h2>ABOUT</h2>
-<p>
-ZAYVERO represents precision, power, and presence.
-Minimal silhouettes. Elevated essentials. Designed for dominance.
-We build garments that command space without noise.
-</p>
+  <h2>ABOUT</h2>
+  <p>ZAYVERO is a premium lifestyle brand for Egypt and beyond. Luxury-inspired streetwear, minimal silhouettes, and elevated essentials — ready to define your presence.</p>
 </div>
 
 <div class="section" id="shop">
-<div class="products">
-
-<!-- PRODUCTS -->
-<div class="product" onclick="openProductDetail('Shadow Bomber', 110, 'Shadow Bomber is sleek and commanding, perfect for urban dominance.', ['S','M','L','XL'], ['Black','Grey'])">
-<img src="https://images.unsplash.com/photo-1520975916090-3105956dac38?auto=format&fit=crop&w=900&q=80">
-<h3>Shadow Bomber</h3>
-<p>$110</p>
-<button onclick="event.stopPropagation(); addToCart('Shadow Bomber',110); showAddedAnimation(event)">Add to Cart</button>
+  <div class="products" id="productsGrid"></div>
 </div>
 
-<div class="product" onclick="openProductDetail('Essential White Tee', 45, 'A crisp, clean essential that pairs with any outfit.', ['S','M','L','XL'], ['White'])">
-<img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80">
-<h3>Essential White Tee</h3>
-<p>$45</p>
-<button onclick="event.stopPropagation(); addToCart('Essential White Tee',45); showAddedAnimation(event)">Add to Cart</button>
-</div>
-
-<div class="product" onclick="openProductDetail('Urban Grey Hoodie', 85, 'Comfort meets street style in this grey hoodie.', ['S','M','L','XL'], ['Grey','Charcoal'])">
-<img src="https://images.unsplash.com/photo-1516826957135-700dedea698c?auto=format&fit=crop&w=900&q=80">
-<h3>Urban Grey Hoodie</h3>
-<p>$85</p>
-<button onclick="event.stopPropagation(); addToCart('Urban Grey Hoodie',85); showAddedAnimation(event)">Add to Cart</button>
-</div>
-
-<div class="product" onclick="openProductDetail('Elite Black Suit', 240, 'A tailored black suit that exudes confidence.', ['S','M','L','XL'], ['Black'])">
-<img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=900&q=80">
-<h3>Elite Black Suit</h3>
-<p>$240</p>
-<button onclick="event.stopPropagation(); addToCart('Elite Black Suit',240); showAddedAnimation(event)">Add to Cart</button>
-</div>
-
-<div class="product" onclick="openProductDetail('Classic Denim Jacket', 95, 'Timeless denim jacket for every wardrobe.', ['S','M','L','XL'], ['Blue','Dark Blue'])">
-<img src="https://images.unsplash.com/photo-1503342452485-86d0b4c6c1d2?auto=format&fit=crop&w=900&q=80">
-<h3>Classic Denim Jacket</h3>
-<p>$95</p>
-<button onclick="event.stopPropagation(); addToCart('Classic Denim Jacket',95); showAddedAnimation(event)">Add to Cart</button>
-</div>
-
-<div class="product" onclick="openProductDetail('Luxury Knit Sweater', 120, 'Soft knit sweater, luxurious comfort, modern silhouette.', ['S','M','L','XL'], ['Beige','Black'])">
-<img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=900&q=80">
-<h3>Luxury Knit Sweater</h3>
-<p>$120</p>
-<button onclick="event.stopPropagation(); addToCart('Luxury Knit Sweater',120); showAddedAnimation(event)">Add to Cart</button>
-</div>
-
-</div>
+<!-- PRODUCT MODAL -->
+<div class="modal" id="productModal" onclick="closeProductModal(event)">
+  <div class="modal-content" id="productModalContent">
+    <img id="modalImg" src="" style="width:100%;border-radius:16px;">
+    <h3 id="modalName"></h3>
+    <p id="modalPrice"></p>
+    <label>Size:</label>
+    <select id="modalSize"><option>S</option><option>M</option><option>L</option><option>XL</option></select>
+    <label>Color:</label>
+    <select id="modalColor"><option>Black</option><option>White</option><option>Grey</option></select>
+    <button onclick="addToCartFromModal()">Add to Cart</button>
+  </div>
 </div>
 
 <!-- CHECKOUT MODAL -->
 <div class="modal" id="checkoutModal" onclick="closeCheckout(event)">
-<div class="modal-content">
-<h2>Checkout</h2>
-<form onsubmit="completeCheckout(event)">
-<input placeholder="Full Name" required>
-<input placeholder="Email" required>
-<input placeholder="Address" required>
-<button type="submit" class="checkout-btn">Place Order</button>
-</form>
-</div>
+  <div class="modal-content">
+    <h2>Checkout</h2>
+    <form onsubmit="completeCheckout(event)">
+      <input placeholder="Full Name" required>
+      <input placeholder="Email" required>
+      <input placeholder="Address" required>
+      <select required>
+        <option value="">Payment Method</option>
+        <option>Cash on Delivery</option>
+        <option>Fawry / Paymob (Simulated)</option>
+      </select>
+      <button type="submit" class="checkout-btn">Place Order</button>
+    </form>
+  </div>
 </div>
 
-<!-- PRODUCT DETAIL MODAL -->
-<div class="product-modal" id="productModal" onclick="closeProductDetail(event)">
-<div class="product-modal-content" id="productModalContent">
-<span class="close-product-modal" onclick="closeProductDetail(event)">✕</span>
-<h2 id="modalProductName"></h2>
-<img id="modalProductImage" src="">
-<p id="modalProductDesc"></p>
-<select id="sizeSelector"></select>
-<select id="colorSelector"></select>
-<button class="checkout-btn" id="modalAddBtn">Add to Cart</button>
-</div>
-</div>
+<div class="success-msg" id="successMsg">Added to Cart!</div>
 
 <script>
-/* SCROLL ANIMATION */
-const observer = new IntersectionObserver(entries=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting){
-entry.target.classList.add("visible");
-}
-});
-},{threshold:0.2});
+// PRODUCTS
+const products = [
+{name:"Shadow Bomber", price:110, img:"https://images.unsplash.com/photo-1520975916090-3105956dac38?auto=format&fit=crop&w=900&q=80"},
+{name:"Essential White Tee", price:45, img:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80"},
+{name:"Urban Grey Hoodie", price:85, img:"https://images.unsplash.com/photo-1516826957135-700dedea698c?auto=format&fit=crop&w=900&q=80"},
+{name:"Elite Black Suit", price:240, img:"https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=900&q=80"},
+{name:"Classic Denim Jacket", price:95, img:"https://images.unsplash.com/photo-1503342452485-86d0b4c6c1d2?auto=format&fit=crop&w=900&q=80"},
+{name:"Luxury Knit Sweater", price:120, img:"https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=900&q=80"}
+];
 
-document.querySelectorAll(".section").forEach(el=>{observer.observe(el);});
-document.querySelectorAll(".product").forEach((el, index)=>{
-el.style.transitionDelay = (index * 0.15) + "s";
-observer.observe(el);
+// RENDER PRODUCTS
+const productsGrid = document.getElementById("productsGrid");
+products.forEach((p,index)=>{
+  const div=document.createElement("div");
+  div.className="product";
+  div.innerHTML=`<img src="${p.img}" onclick="openProductModal(${index})"><h3>${p.name}</h3><p>EGP ${p.price}</p><button onclick="openProductModal(${index})">View</button>`;
+  productsGrid.appendChild(div);
 });
 
-/* CART SYSTEM */
+// SCROLL ANIMATIONS
+const observer = new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting) entry.target.classList.add("visible");});},{threshold:0.2});
+document.querySelectorAll(".section, .product").forEach(el=>observer.observe(el));
+
+// CART
 let cart = JSON.parse(localStorage.getItem("zayveroCart")) || [];
+let currentModalIndex = null;
 
-function saveCart(){
-localStorage.setItem("zayveroCart", JSON.stringify(cart));
-updateCartUI();
-}
-
+function saveCart(){localStorage.setItem("zayveroCart", JSON.stringify(cart)); updateCartUI();}
 function updateCartUI(){
-const cartItems = document.getElementById("cartItems");
-const cartCount = document.getElementById("cart-count");
-const cartTotal = document.getElementById("cartTotal");
-
-cartItems.innerHTML = "";
-let total = 0;
-let totalItems = 0;
-
-cart.forEach((item,index)=>{
-if(!item.quantity) item.quantity = 1;
-total += item.price * item.quantity;
-totalItems += item.quantity;
-
-cartItems.innerHTML += `
-<div class="cart-item">
-<div>
-<strong>${item.name}</strong><br>
-<button class="qty-btn" onclick="decreaseQuantity(${index})">−</button>
-${item.quantity}
-<button class="qty-btn" onclick="increaseQuantity(${index})">+</button>
-</div>
-<div>
-$${item.price * item.quantity}
-<button class="remove-btn" onclick="removeItem(${index})">✕</button>
-</div>
-</div>
-`;
-});
-
-cartCount.textContent = totalItems;
-cartTotal.textContent = total;
+  const cartItems=document.getElementById("cartItems");
+  const cartCount=document.getElementById("cart-count");
+  const cartTotal=document.getElementById("cartTotal");
+  cartItems.innerHTML="";
+  let total=0,totalItems=0;
+  cart.forEach((item,index)=>{
+    total+=item.price*item.quantity;
+    totalItems+=item.quantity;
+    cartItems.innerHTML+=`<div class="cart-item"><div><strong>${item.name}</strong><br><button class="qty-btn" onclick="decreaseQuantity(${index})">−</button>${item.quantity}<button class="qty-btn" onclick="increaseQuantity(${index})">+</button></div><div>EGP ${item.price*item.quantity}<button class="remove-btn" onclick="removeItem(${index})">✕</button></div></div>`;
+  });
+  cartCount.textContent=totalItems;
+  cartTotal.textContent=total;
 }
 
-function addToCart(name,price){
-const existing = cart.find(item => item.name === name);
-if(existing){
-existing.quantity += 1;
-}else{
-cart.push({name,price,quantity:1});
-}
-saveCart();
-}
-
-// Quantity control
-function increaseQuantity(index){cart[index].quantity+=1; saveCart();}
-function decreaseQuantity(index){if(cart[index].quantity>1){cart[index].quantity-=1}else{cart.splice(index,1)} saveCart();}
-function removeItem(index){cart.splice(index,1); saveCart();}
-
-// Cart toggle
-function toggleCart(){
-document.getElementById("overlay").classList.toggle("active");
-document.getElementById("cartPanel").classList.toggle("active");
+function addToCartFromModal(){
+  const p=products[currentModalIndex];
+  const size=document.getElementById("modalSize").value;
+  const color=document.getElementById("modalColor").value;
+  const name=`${p.name} (${size}, ${color})`;
+  const existing=cart.find(i=>i.name===name);
+  if(existing) existing.quantity++;
+  else cart.push({name,price:p.price,quantity:1});
+  saveCart();
+  document.getElementById("successMsg").classList.add("show");
+  setTimeout(()=>document.getElementById("successMsg").classList.remove("show"),1500);
+  closeProductModal();
 }
 
-// Checkout modal
+function increaseQuantity(i){cart[i].quantity++;saveCart();}
+function decreaseQuantity(i){if(cart[i].quantity>1) cart[i].quantity--;else cart.splice(i,1);saveCart();}
+function removeItem(i){cart.splice(i,1);saveCart();}
+
+// MODALS
+function toggleCart(){document.getElementById("overlay").classList.toggle("active");document.getElementById("cartPanel").classList.toggle("active");}
+function openProductModal(index){currentModalIndex=index;const p=products[index];document.getElementById("modalImg").src=p.img;document.getElementById("modalName").textContent=p.name;document.getElementById("modalPrice").textContent=`EGP ${p.price}`;document.getElementById("productModal").classList.add("active");}
+function closeProductModal(e){if(!e || e.target.id==="productModal") document.getElementById("productModal").classList.remove("active");}
 function openCheckout(){document.getElementById("checkoutModal").classList.add("active");}
-function closeCheckout(e){if(e.target.id==='checkoutModal'){document.getElementById("checkoutModal").classList.remove("active");}}
-function completeCheckout(e){
-e.preventDefault();
-alert("Order placed successfully!");
-cart=[];
-saveCart();
-document.getElementById("checkoutModal").classList.remove("active");
-toggleCart();
-}
+function closeCheckout(e){if(e.target.id==="checkoutModal") document.getElementById("checkoutModal").classList.remove("active");}
+function completeCheckout(e){e.preventDefault();alert("Order placed successfully! (Simulated for Egypt)");cart=[];saveCart();document.getElementById("checkoutModal").classList.remove("active");toggleCart();}
 
-/* PARALLAX HERO EFFECT */
-window.addEventListener("scroll", () => {
-const hero = document.querySelector(".hero");
-let offset = window.pageYOffset;
-hero.style.backgroundPositionY = offset * 0.5 + "px";
-});
+// HERO PARALLAX
+window.addEventListener("scroll",()=>{document.querySelector(".hero").style.backgroundPositionY=window.pageYOffset*0.5+"px";});
 
-/* ADDED TO CART ANIMATION */
-function showAddedAnimation(event){
-const anim = document.createElement('div');
-anim.className = 'added-animation';
-anim.textContent = 'Added!';
-document.body.appendChild(anim);
-anim.style.left = event.clientX + 'px';
-anim.style.top = event.clientY + 'px';
-setTimeout(()=> anim.remove(),1000);
-}
-
-/* PRODUCT DETAIL MODAL */
-function openProductDetail(name, price, desc, sizes, colors){
-document.getElementById('productModal').classList.add('active');
-document.getElementById('modalProductName').textContent = name;
-document.getElementById('modalProductImage').src = event.target.src || event.target.querySelector('img').src;
-document.getElementById('modalProductDesc').textContent = desc;
-
-const sizeSelect = document.getElementById('sizeSelector');
-sizeSelect.innerHTML = '';
-sizes.forEach(s=>{
-  const opt = document.createElement('option'); opt.value=s; opt.textContent=s;
-  sizeSelect.appendChild(opt);
-});
-
-const colorSelect = document.getElementById('colorSelector');
-colorSelect.innerHTML = '';
-colors.forEach(c=>{
-  const opt = document.createElement('option'); opt.value=c; opt.textContent=c;
-  colorSelect.appendChild(opt);
-});
-
-// Add to cart from modal
-const modalBtn = document.getElementById('modalAddBtn');
-modalBtn.onclick = ()=>{
-const selectedSize = sizeSelect.value;
-const selectedColor = colorSelect.value;
-addToCart(`${name} (${selectedSize}, ${selectedColor})`, price);
-showAddedAnimation(event);
-closeProductDetail();
-};
-}
-
-function closeProductDetail(e){
-if(!e || e.target.id==='productModal' || e.target.className==='close-product-modal'){
-document.getElementById('productModal').classList.remove('active');
-}
-}
-
-// INITIAL UI UPDATE
 updateCartUI();
 </script>
 
